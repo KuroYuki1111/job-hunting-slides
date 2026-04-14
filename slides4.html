@@ -1,0 +1,609 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>内定者の就活スケジュール全公開</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --main:  #8b2c3d;
+  --sub-c: #b94a5f;
+  --accent:#d4a574;
+  --text:  #2a1a1f;
+  --sub:   #6b5560;
+  --line:  #e8dcdf;
+  --bg:    #faf6f4;
+  --hi:    #fdf5e8;
+  --white: #ffffff;
+}
+
+body {
+  font-family: 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  background: #ede4e2;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px 80px;
+  gap: 3px;
+}
+
+.slide {
+  width: 960px;
+  height: 540px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+.bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: var(--main);
+}
+.logo {
+  position: absolute;
+  top: 16px; left: 32px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--main);
+  letter-spacing: 0.08em;
+}
+.pagenum {
+  position: absolute;
+  top: 16px; right: 32px;
+  font-size: 11px;
+  color: var(--sub);
+  letter-spacing: 0.1em;
+}
+.footer {
+  position: absolute;
+  bottom: 14px; left: 32px; right: 32px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--sub);
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+.sec-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--main);
+  letter-spacing: 0.15em;
+  padding-left: 12px;
+  border-left: 3px solid var(--main);
+  margin-bottom: 10px;
+}
+.content {
+  position: absolute;
+  top: 54px; left: 48px; right: 48px; bottom: 42px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== S1 Title ===== */
+.s1-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.s1-kicker {
+  font-size: 13px;
+  color: var(--main);
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  margin-bottom: 18px;
+}
+.s1-title {
+  font-size: 44px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.s1-title .hi { color: var(--main); }
+.s1-sub {
+  font-size: 16px;
+  color: var(--sub);
+  margin-top: 14px;
+  line-height: 1.7;
+}
+.s1-goal {
+  margin-top: 28px;
+  display: flex;
+  gap: 18px;
+}
+.s1-goal-card {
+  flex: 1;
+  border: 1.5px solid var(--main);
+  padding: 14px 16px;
+  border-radius: 2px;
+  background: var(--bg);
+}
+.s1-goal-num {
+  font-size: 10px;
+  color: var(--main);
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+.s1-goal-text {
+  font-size: 14px;
+  font-weight: 700;
+  color: var(--text);
+}
+
+/* ===== スケジュール表 (S2/S3) ===== */
+.sched-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.sched-title .hi { color: var(--main); }
+.sched-lead {
+  font-size: 11px;
+  color: var(--sub);
+  margin-bottom: 10px;
+}
+.sched-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  grid-template-columns: repeat(6, 1fr);
+  gap: 4px;
+}
+.sched-grid.g7 { grid-template-columns: repeat(7, 1fr); }
+.m-cell {
+  background: var(--bg);
+  border-top: 2px solid var(--main);
+  padding: 6px 7px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.m-cell.accent {
+  background: var(--hi);
+  border-top: 2px solid var(--accent);
+}
+.m-head {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--main);
+  margin-bottom: 3px;
+  letter-spacing: 0.05em;
+}
+.m-cell.accent .m-head { color: #a67430; }
+.m-list {
+  font-size: 8.5px;
+  line-height: 1.45;
+  color: var(--text);
+  list-style: none;
+}
+.m-list li {
+  padding-left: 7px;
+  position: relative;
+  margin-bottom: 1px;
+}
+.m-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 5px;
+  width: 3px; height: 3px;
+  background: var(--sub-c);
+  border-radius: 50%;
+}
+.totals {
+  margin-top: 6px;
+  background: var(--hi);
+  border-left: 3px solid var(--accent);
+  padding: 7px 12px;
+  display: flex;
+  gap: 18px;
+  font-size: 10px;
+  color: var(--text);
+}
+.totals b { color: var(--main); }
+
+/* ===== やってよかった (S4/S5) ===== */
+.ty-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.ty-title .hi { color: var(--main); }
+.ty-lead {
+  font-size: 11px;
+  color: var(--sub);
+  margin-bottom: 12px;
+}
+.ty-cols {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 16px;
+  min-height: 0;
+}
+.ty-card {
+  background: var(--bg);
+  border-top: 3px solid var(--main);
+  padding: 14px 16px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.ty-card.b { border-top-color: var(--accent); background: var(--hi); }
+.ty-head {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--main);
+  margin-bottom: 8px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.ty-card.b .ty-head { color: #a67430; }
+.ty-head::before {
+  content: "◎";
+  font-size: 15px;
+}
+.ty-list {
+  list-style: none;
+  font-size: 12px;
+  line-height: 1.6;
+  color: var(--text);
+}
+.ty-list li {
+  padding-left: 12px;
+  position: relative;
+  margin-bottom: 8px;
+}
+.ty-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 6px;
+  width: 5px; height: 1.5px;
+  background: var(--main);
+}
+.ty-card.b .ty-list li::before { background: var(--accent); }
+</style>
+</head>
+<body>
+
+<!-- ========== S1: Title ========== -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">01 / 05</div>
+  <div class="content">
+    <div class="sec-label">INTRODUCTION</div>
+    <div class="s1-wrap">
+      <div class="s1-kicker">INTERNAL OFFER HOLDERS</div>
+      <div class="s1-title">全部見せます！<br><span class="hi">内定者のリアル就活</span>スケジュール</div>
+      <div class="s1-sub">日系大手5社内定者 & 27卒年内内定者<br>2人の実録スケジュールから「やってよかった／おけばよかった」まで</div>
+      <div class="s1-goal">
+        <div class="s1-goal-card">
+          <div class="s1-goal-num">GOAL 01</div>
+          <div class="s1-goal-text">月別の動き方を具体的にイメージできる</div>
+        </div>
+        <div class="s1-goal-card">
+          <div class="s1-goal-num">GOAL 02</div>
+          <div class="s1-goal-text">先輩の成功と後悔から逆算して動ける</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Career Support</span><span>Schedule Review</span></div>
+</div>
+
+<!-- ========== S2: 日系大手5社内定者 ========== -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">02 / 05</div>
+  <div class="content">
+    <div class="sec-label">SCHEDULE 01</div>
+    <div class="sched-title">日系大手<span class="hi">5社内定者</span>の就活スケジュール</div>
+    <div class="sched-lead">合計エントリー:インターン99社・本選考30社／参加インターン約40社／内定5社（商社・海運・金融・広告）</div>
+    <div class="sched-grid g7">
+      <div class="m-cell">
+        <div class="m-head">4月</div>
+        <ul class="m-list">
+          <li>就活セミナー・GD講座・練習会</li>
+          <li>ベンチャーのインターンエントリー1社（初面接）</li>
+          <li>ガクチカ・自己PR・面接想定質問を一通り書く</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">5月</div>
+        <ul class="m-list">
+          <li>ベンチャー選考10社・大手説明会</li>
+          <li>模擬面接・GD練習毎週</li>
+          <li>ガクチカ・自己PR完成</li>
+          <li>面接回答ブラッシュアップ</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">6月</div>
+        <ul class="m-list">
+          <li>大手エントリー開始(2ヶ月で50社)</li>
+          <li>GD選考6社、面接1社</li>
+          <li>毎日説明会参加</li>
+          <li>インターン参加2社</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">7月</div>
+        <ul class="m-list">
+          <li>大手エントリー継続</li>
+          <li>GD選考7社、面接8社</li>
+          <li>説明会・インターン3社参加</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">8月</div>
+        <ul class="m-list">
+          <li>エントリー10社</li>
+          <li>インターン参加7社</li>
+          <li>面接8回</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">9月</div>
+        <ul class="m-list">
+          <li>エントリー10社</li>
+          <li>インターン参加7社</li>
+          <li>GD選考・面接7社</li>
+          <li>初本選考ES提出</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">10月</div>
+        <ul class="m-list">
+          <li>インターン5社参加(〜1月毎月)</li>
+          <li>GD・面接週2・リク面談・座談会</li>
+          <li>初テスセン</li>
+          <li>ベンチャー本選考(年内6〜7社)</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">11月</div>
+        <ul class="m-list">
+          <li>インターン6社参加</li>
+          <li>GD・面接週2</li>
+          <li>初内定(インターン経由)</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">12月</div>
+        <ul class="m-list">
+          <li>インターン6社参加</li>
+          <li>GD・面接週2</li>
+          <li>初OB訪問</li>
+        </ul>
+      </div>
+      <div class="m-cell accent">
+        <div class="m-head">1月</div>
+        <ul class="m-list">
+          <li>インターン5社参加</li>
+          <li>OB訪問6人</li>
+          <li>大手早期選考開始・テスセン毎日1h</li>
+          <li>★1日4〜6予定が毎日</li>
+        </ul>
+      </div>
+      <div class="m-cell accent">
+        <div class="m-head">2月</div>
+        <ul class="m-list">
+          <li>エントリー7社・インターン6社</li>
+          <li>テスセン毎日1h</li>
+          <li>OB訪問10人</li>
+          <li>中旬〜早期選考面接ほぼ毎日</li>
+        </ul>
+      </div>
+      <div class="m-cell accent">
+        <div class="m-head">3月</div>
+        <ul class="m-list">
+          <li>エントリー16社・毎日面接</li>
+          <li>2社内定(→10社辞退)</li>
+          <li>テスセン10回受験・OB訪問4人</li>
+        </ul>
+      </div>
+      <div class="m-cell accent">
+        <div class="m-head">4月</div>
+        <ul class="m-list">
+          <li>面接10回・GD選考2回</li>
+          <li>内定2社 → 終活</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Schedule 01</span><span>大手5社内定者</span></div>
+</div>
+
+<!-- ========== S3: 27卒年内内定者 ========== -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">03 / 05</div>
+  <div class="content">
+    <div class="sec-label">SCHEDULE 02</div>
+    <div class="sched-title">27卒<span class="hi">年内内定者</span>の就活スケジュール</div>
+    <div class="sched-lead">夏インターン44社応募/秋冬インターン8社応募/12月に第1志望から内定→終活</div>
+    <div class="sched-grid">
+      <div class="m-cell">
+        <div class="m-head">3月</div>
+        <ul class="m-list">
+          <li>就活セミナー参加</li>
+          <li>ガクチカ試し書き(400字)</li>
+          <li>Webテスト勉強開始</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">4月</div>
+        <ul class="m-list">
+          <li>大手説明会参加</li>
+          <li>ガクチカ試し書き(200/400字)</li>
+          <li>週1面接orGD練習</li>
+          <li>ベンチャー1社選考</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">5月</div>
+        <ul class="m-list">
+          <li>ガクチカ&自己PR完成(200/300/400/500字)</li>
+          <li>週1面接orGD練習</li>
+          <li>ベンチャー4社選考</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">6月</div>
+        <ul class="m-list">
+          <li>大手夏インターンエントリー開始</li>
+          <li>面接2社</li>
+          <li>インターン参加3社</li>
+        </ul>
+      </div>
+      <div class="m-cell accent">
+        <div class="m-head">7月</div>
+        <ul class="m-list">
+          <li>大手エントリー継続</li>
+          <li>面接8社・GD5社</li>
+          <li>インターン参加2社</li>
+          <li>★夏インターン44社応募</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">8月</div>
+        <ul class="m-list">
+          <li>インターン7社参加</li>
+          <li>面接1社</li>
+          <li>初OB訪問</li>
+          <li>毎日インターンで精一杯(泣)</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">9月</div>
+        <ul class="m-list">
+          <li>インターン4社参加</li>
+        </ul>
+      </div>
+      <div class="m-cell accent">
+        <div class="m-head">10月</div>
+        <ul class="m-list">
+          <li>インターン1社参加・企業イベント</li>
+          <li>テスセン練習5社</li>
+          <li>秋冬インターン応募</li>
+          <li>★秋冬インターン8社応募</li>
+        </ul>
+      </div>
+      <div class="m-cell">
+        <div class="m-head">11月</div>
+        <ul class="m-list">
+          <li>インターン2社参加</li>
+          <li>OB訪問7人</li>
+          <li>早期選考2社(インターン経由)</li>
+        </ul>
+      </div>
+      <div class="m-cell accent">
+        <div class="m-head">12月</div>
+        <ul class="m-list">
+          <li>内定2社(インターン経由)</li>
+          <li>⇒第1志望から内定</li>
+          <li>終活！</li>
+        </ul>
+      </div>
+    </div>
+    <div class="totals">
+      <span><b>夏IS</b> 44社応募</span>
+      <span><b>秋冬IS</b> 8社応募</span>
+      <span><b>OB訪問</b> 7人</span>
+      <span><b>結果</b> 第1志望内定・年内終活</span>
+    </div>
+  </div>
+  <div class="footer"><span>Schedule 02</span><span>27卒年内内定者</span></div>
+</div>
+
+<!-- ========== S4: やってよかった/おけばよかった(1) ========== -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">04 / 05</div>
+  <div class="content">
+    <div class="sec-label">LESSONS 01</div>
+    <div class="ty-title">やってよかった・<span class="hi">おけばよかった</span>こと ①</div>
+    <div class="ty-lead">日系大手5社内定者の振り返り</div>
+    <div class="ty-cols">
+      <div class="ty-card">
+        <div class="ty-head">やってよかったこと</div>
+        <ul class="ty-list">
+          <li>インターン時点で業界を決めない(最後まで決めなかった)</li>
+          <li>気になるインターンは可能な限り全て出す</li>
+          <li>モチベに関係なくESを出し予定を自動で埋める(中だるみ回避)</li>
+          <li>ベンチャー・人材を練習で受ける(志望動機不要の企業)</li>
+          <li>1人で就活しない(コミュニティ・先輩添削・友達と朝活)</li>
+          <li>本選考優遇ありのインターンで早期内定4つ→チャレンジ企業に集中</li>
+        </ul>
+      </div>
+      <div class="ty-card b">
+        <div class="ty-head">やっておけばよかったこと</div>
+        <ul class="ty-list">
+          <li>3年3〜4月にWebテスト勉強を一通り終える</li>
+          <li>OB訪問は9〜10月から始めるべき(デベ・総合商社志望は特に)</li>
+          <li>業界研究の時間が不足(知らない企業が多かった)</li>
+          <li>テストセンターを夏に経験し年内に完成させるのがベスト</li>
+          <li>リク面談までに志望動機完成(実質ガッツリ面接)</li>
+          <li>IT・通信未見→インターン経由早期内定多・年収WLB◎</li>
+          <li>電力ガス等インフラ系を冬開始は遅い(複数days優遇)</li>
+          <li>コンサルも受けるべき(ケース対策1週間でOK)</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Lessons 01</span><span>Reflection</span></div>
+</div>
+
+<!-- ========== S5: やってよかった/おけばよかった(2) ========== -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">05 / 05</div>
+  <div class="content">
+    <div class="sec-label">LESSONS 02</div>
+    <div class="ty-title">やってよかった・<span class="hi">おけばよかった</span>こと ②</div>
+    <div class="ty-lead">27卒年内内定者の振り返り</div>
+    <div class="ty-cols">
+      <div class="ty-card">
+        <div class="ty-head">やってよかったこと</div>
+        <ul class="ty-list">
+          <li>インターン時点で業界を決めない(最後まで決めなかった)</li>
+          <li>気になるインターンは可能な限り全て出す</li>
+          <li>モチベに関係なくESを出し予定を自動で埋める(中だるみ回避)</li>
+          <li>SNSの情報が意外と大切(特にXでES締切・就活ポイント入手)</li>
+          <li>1人で就活しない(コミュニティ・先輩添削・友達と朝活)</li>
+          <li>本選考優遇ありのインターンでサマー経由の早期内定獲得</li>
+        </ul>
+      </div>
+      <div class="ty-card b">
+        <div class="ty-head">やっておけばよかったこと</div>
+        <ul class="ty-list">
+          <li>Webテストは4〜5月にはもっと早く開始すべき(ES出すと締切が早い)</li>
+          <li>業界研究の時間が不足(知らない企業が多かった)</li>
+          <li>サマー段階でも志望動機は聞かれる→1分で話せる準備を</li>
+          <li>メンタルケア・体調管理をもっとすべき(何度も体調崩した)</li>
+          <li>体調不良のままWebテストを受けたら落ちた</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Lessons 02</span><span>Reflection</span></div>
+</div>
+
+</body>
+</html>

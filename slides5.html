@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>就活アプリのオススメ・活用法</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --main:  #1b5e6f;
+  --sub-c: #2d8599;
+  --accent:#e8a33d;
+  --text:  #142a30;
+  --sub:   #5a6b70;
+  --line:  #dce6e8;
+  --bg:    #f3f8f9;
+  --hi:    #fdf4e3;
+  --white: #ffffff;
+}
+
+body {
+  font-family: 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  background: #dde8ea;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px 80px;
+  gap: 3px;
+}
+
+.slide {
+  width: 960px;
+  height: 540px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+.bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: var(--main);
+}
+.logo {
+  position: absolute;
+  top: 16px; left: 32px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--main);
+  letter-spacing: 0.08em;
+}
+.pagenum {
+  position: absolute;
+  top: 16px; right: 32px;
+  font-size: 11px;
+  color: var(--sub);
+  letter-spacing: 0.1em;
+}
+.footer {
+  position: absolute;
+  bottom: 14px; left: 32px; right: 32px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--sub);
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+.sec-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--main);
+  letter-spacing: 0.15em;
+  padding-left: 12px;
+  border-left: 3px solid var(--main);
+  margin-bottom: 10px;
+}
+.content {
+  position: absolute;
+  top: 54px; left: 48px; right: 48px; bottom: 42px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== S1 Title ===== */
+.s1-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.s1-kicker {
+  font-size: 13px;
+  color: var(--main);
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.s1-title {
+  font-size: 38px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text);
+}
+.s1-title .hi { color: var(--main); }
+.s1-sub {
+  font-size: 14px;
+  color: var(--sub);
+  margin-top: 10px;
+  line-height: 1.7;
+}
+.s1-intro {
+  margin-top: 18px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+.s1-bubble {
+  background: var(--bg);
+  border-left: 3px solid var(--sub-c);
+  padding: 9px 12px;
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.55;
+}
+.s1-purpose {
+  margin-top: 14px;
+  display: flex;
+  gap: 10px;
+}
+.s1-purpose-card {
+  flex: 1;
+  border: 1.5px solid var(--main);
+  padding: 10px 12px;
+  background: var(--white);
+}
+.s1-purpose-num {
+  font-size: 9px;
+  color: var(--main);
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  margin-bottom: 2px;
+}
+.s1-purpose-text {
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+.s1-voice {
+  margin-top: 12px;
+  background: var(--hi);
+  border-left: 3px solid var(--accent);
+  padding: 9px 14px;
+  font-size: 11px;
+  color: var(--text);
+  line-height: 1.6;
+}
+
+/* ===== Priority slides (S2-S5) ===== */
+.pri-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.pri-title .hi { color: var(--main); }
+.pri-lead {
+  font-size: 11px;
+  color: var(--sub);
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.stars {
+  display: inline-block;
+  background: var(--main);
+  color: #fff;
+  padding: 2px 10px;
+  font-size: 11px;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+}
+.app-grid {
+  flex: 1;
+  min-height: 0;
+  display: grid;
+  gap: 8px;
+}
+.app-grid.g4 { grid-template-columns: 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.app-grid.g3 { grid-template-columns: 1fr 1fr 1fr; }
+.app-grid.g6 { grid-template-columns: 1fr 1fr 1fr; grid-template-rows: 1fr 1fr; }
+.app-card {
+  background: var(--bg);
+  border-top: 2.5px solid var(--main);
+  padding: 11px 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.app-name {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--main);
+  margin-bottom: 6px;
+}
+.app-list {
+  list-style: none;
+  font-size: 12px;
+  line-height: 1.55;
+  color: var(--text);
+  flex: 1;
+}
+.app-list li {
+  padding-left: 11px;
+  position: relative;
+  margin-bottom: 5px;
+}
+.app-list li::before {
+  content: "";
+  position: absolute;
+  left: 0; top: 7px;
+  width: 5px; height: 1.5px;
+  background: var(--sub-c);
+}
+.callout {
+  background: var(--hi);
+  padding: 6px 10px 6px 26px;
+  font-size: 11px;
+  line-height: 1.55;
+  color: var(--text);
+  margin-top: 6px;
+  position: relative;
+}
+.callout::before {
+  content: "✓";
+  position: absolute;
+  left: 8px;
+  top: 5px;
+  width: 13px;
+  height: 13px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+</style>
+</head>
+<body>
+
+<!-- ========== S1: Title ========== -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">01 / 05</div>
+  <div class="content">
+    <div class="sec-label">INTRODUCTION</div>
+    <div class="s1-wrap">
+      <div class="s1-kicker">JOB HUNTING APPS</div>
+      <div class="s1-title">就活アプリの<span class="hi">オススメ</span>・活用法</div>
+      <div class="s1-sub">優先度別に厳選／企業探し・選考情報収集・スカウトで目的別に使い分け</div>
+
+      <div class="s1-intro">
+        <div class="s1-bubble">「色々な就活アプリ・サービスがあるけど、1つ登録するとまた新しいサービスが出てくる……」</div>
+        <div class="s1-bubble">「どれも同じに見えるけど、たくさん登録しておいたほうが後々良いのかな？」</div>
+      </div>
+
+      <div class="s1-purpose">
+        <div class="s1-purpose-card">
+          <div class="s1-purpose-num">PURPOSE 01</div>
+          <div class="s1-purpose-text">企業探し</div>
+        </div>
+        <div class="s1-purpose-card">
+          <div class="s1-purpose-num">PURPOSE 02</div>
+          <div class="s1-purpose-text">選考情報の収集</div>
+        </div>
+        <div class="s1-purpose-card">
+          <div class="s1-purpose-num">PURPOSE 03</div>
+          <div class="s1-purpose-text">スカウト</div>
+        </div>
+      </div>
+
+      <div class="s1-voice">便利な時代になったけど、意外と必要・不必要がハッキリ分かれている。目的ごとに自分に合ったものを絞り込もう！</div>
+    </div>
+  </div>
+  <div class="footer"><span>Career Support</span><span>App Guide</span></div>
+</div>
+
+<!-- ========== S2: 優先度最高 ========== -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">02 / 05</div>
+  <div class="content">
+    <div class="sec-label">PRIORITY S</div>
+    <div class="pri-title">優先度：<span class="hi">最高</span></div>
+    <div class="pri-lead"><span class="stars">★★★★</span><span>就活を進める上で必須レベル。まずはここから登録</span></div>
+    <div class="app-grid g4">
+      <div class="app-card">
+        <div class="app-name">ワンキャリア</div>
+        <ul class="app-list">
+          <li>ESや選考フローがわかりやすい</li>
+          <li>「合格の秘訣」に競合との違い・選考のコツがびっしり。企業研究の基礎はこれでOK</li>
+          <li>調べた上で社員訪問に行くとより有意義な時間に</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="app-name">面接練習サービス</div>
+        <ul class="app-list">
+          <li>就活サービスで唯一、面接練習ができる</li>
+          <li>身分証の提示が必要で安心して使える</li>
+          <li>内定者勉強会(ES添削・優遇情報シェア・模擬面接等)が高頻度で開催</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="app-name">ビズリーチ・キャンパス</div>
+        <ul class="app-list">
+          <li>社員訪問のプラットフォーム。企業が公式に紹介</li>
+          <li>有名企業の特別セミナー・座談会も開催</li>
+          <li>プロフィール95%以上で大手からスカウト殺到</li>
+        </ul>
+        <div class="callout">スカウトアプリは①興味ある企業は全てフォロー②1日1回必ずログイン。アクティブ率を上げて見つけてもらおう</div>
+      </div>
+      <div class="app-card">
+        <div class="app-name">就活会議</div>
+        <ul class="app-list">
+          <li>機能はワンキャリアに似ている</li>
+          <li>「実際の面接での受け答え」が体験記の必須要件。良い回答はマネできる！地味に超使える</li>
+          <li>大手海運内定者も「そのまま話した」と証言</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Priority S</span><span>Must Use</span></div>
+</div>
+
+<!-- ========== S3: 優先度高 ========== -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">03 / 05</div>
+  <div class="content">
+    <div class="sec-label">PRIORITY A</div>
+    <div class="pri-title">優先度：<span class="hi">高</span></div>
+    <div class="pri-lead"><span class="stars">★★★☆</span><span>用途が明確なら積極活用したいサービス</span></div>
+    <div class="app-grid g3">
+      <div class="app-card">
+        <div class="app-name">マイナビ</div>
+        <ul class="app-list">
+          <li>企業探し・プレエントリーなど基本機能が集約</li>
+          <li>オンラインイベントで企業研究がサクッとできる</li>
+          <li>マイナビ・リクナビ経由でしか出せない企業もあるので注意</li>
+          <li>Webテストの模擬練習ができる</li>
+        </ul>
+        <div class="callout">志望企業が明確なら企業ごとのマイページを直接作ればOK。就活後半はあまり使わなくなった</div>
+      </div>
+      <div class="app-card">
+        <div class="app-name">Openwork</div>
+        <ul class="app-list">
+          <li>待遇や文化などリアルなクチコミから企業を知れる</li>
+          <li>社内視点での強み・弱みを把握でき企業研究に役立つ</li>
+          <li>企業からのスカウトも来る(割と質が良い)</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="app-name">Unistyle</div>
+        <ul class="app-list">
+          <li>企業別の締切一覧がかなり役立つ</li>
+          <li>企業別オープンチャットはUnistyle運営のものが多い</li>
+          <li>過去の通過ESも参照可(ワンキャリアの補足)</li>
+        </ul>
+        <div class="callout">ガクチカを「塾講師」「カフェバイト」で検索できる！同じ内容のガクチカを探せて超便利</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Priority A</span><span>Recommended</span></div>
+</div>
+
+<!-- ========== S4: 優先度普通 ========== -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">04 / 05</div>
+  <div class="content">
+    <div class="sec-label">PRIORITY B</div>
+    <div class="pri-title">優先度：<span class="hi">普通</span></div>
+    <div class="pri-lead"><span class="stars">★★☆☆</span><span>目的に合わせてサブとして活用</span></div>
+    <div class="app-grid g3">
+      <div class="app-card">
+        <div class="app-name">外資系ドットコム</div>
+        <ul class="app-list">
+          <li>名前は「外資」だが、日系大手の情報も多く掲載され便利</li>
+          <li>選考体験記を読むことができる</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="app-name">Matcher</div>
+        <ul class="app-list">
+          <li>ビズリーチより訪問できる社員の幅が広い。内定者も多数</li>
+          <li>キャリセンやビズリーチでOB・OGが見つからない時の選択肢</li>
+          <li>面談経由で悪質な勧誘のケースもあり要注意</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="app-name">Twitter(現X)</div>
+        <ul class="app-list">
+          <li>情報感度を高く保つのに本当に有効</li>
+          <li>知らなかったオススメインターンなどが流れてくる</li>
+          <li>同じ業界を志望する友達が見つかるかも</li>
+          <li>就活は情報戦！</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Priority B</span><span>Sub Tools</span></div>
+</div>
+
+<!-- ========== S5: 優先度低 ========== -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">05 / 05</div>
+  <div class="content">
+    <div class="sec-label">PRIORITY C</div>
+    <div class="pri-title">優先度：<span class="hi">低</span></div>
+    <div class="pri-lead"><span class="stars">★☆☆☆</span><span>特定の目的がある時だけ使えばOK</span></div>
+    <div class="app-grid g6">
+      <div class="app-card">
+        <div class="app-name">OfferBox・iroots</div>
+        <ul class="app-list">
+          <li>大手企業が揃うスカウトアプリ</li>
+          <li>プロフィール・ガクチカは90%以上埋めるべし</li>
+          <li>埋める過程で自己分析も深まる</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="app-name">LinkedIn・Facebook</div>
+        <ul class="app-list">
+          <li>社会人がよく使っておりOB訪問の申込みが可能</li>
+          <li>外資ITは面談経由でリファラルをもらえることも</li>
+          <li>他でOBが見つからない時の最終手段としてDM</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="app-name">キャリタス就活</div>
+        <ul class="app-list">
+          <li>他サービスと機能がかぶるため優先度低め</li>
+          <li>デザイン思考テスト無料・公開スコアとして使い回せる</li>
+        </ul>
+        <div class="callout">メール多発が難点…デザイン思考テスト練習以外のメリットは薄め</div>
+      </div>
+      <div class="app-card">
+        <div class="app-name">ミキワメ</div>
+        <ul class="app-list">
+          <li>セミナーが頻繁に開催(電話は多め)</li>
+          <li>独自の性格診断をインターン選考で使う企業がごく一部あり(例:NTT都市開発)</li>
+          <li>ノリで受けないように注意</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="app-name">キャリアチケット</div>
+        <ul class="app-list">
+          <li>スカウト型アプリ。ベンチャー・中小が増える</li>
+          <li>スカウトアプリに大量登録する必要性は薄い</li>
+          <li>夏は自分から仕掛けた所に時間を割こう</li>
+        </ul>
+      </div>
+      <div class="app-card">
+        <div class="app-name">Type就活</div>
+        <ul class="app-list">
+          <li>外資IT志望なら必須！</li>
+          <li>他サービスでは案内が来ない企業もある</li>
+          <li>type就活経由の説明会に出ないとES提出できない企業も</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Priority C</span><span>Optional</span></div>
+</div>
+
+</body>
+</html>

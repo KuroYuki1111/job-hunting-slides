@@ -1,0 +1,537 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ゼロからのガクチカ作り方</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --main:  #6b1f2e;
+  --sub-c: #9a3a4c;
+  --accent:#d4a574;
+  --text:  #241014;
+  --sub:   #665058;
+  --line:  #e8dcdf;
+  --bg:    #f8f3f4;
+  --hi:    #fbf4e6;
+  --white: #ffffff;
+}
+
+body {
+  font-family: 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  background: #e8dde0;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px 80px;
+  gap: 3px;
+}
+
+.slide {
+  width: 960px;
+  height: 540px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+.bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: var(--main);
+}
+.logo {
+  position: absolute;
+  top: 16px; left: 32px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--main);
+  letter-spacing: 0.08em;
+}
+.pagenum {
+  position: absolute;
+  top: 16px; right: 32px;
+  font-size: 11px;
+  color: var(--sub);
+  letter-spacing: 0.1em;
+}
+.footer {
+  position: absolute;
+  bottom: 14px; left: 32px; right: 32px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--sub);
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+.sec-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--main);
+  letter-spacing: 0.15em;
+  padding-left: 12px;
+  border-left: 3px solid var(--main);
+  margin-bottom: 10px;
+}
+.content {
+  position: absolute;
+  top: 54px; left: 48px; right: 48px; bottom: 42px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* ===== S1 ===== */
+.s1-wrap { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.s1-kicker {
+  font-size: 13px;
+  color: var(--main);
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.s1-title {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text);
+}
+.s1-title .hi { color: var(--main); }
+.s1-sub {
+  font-size: 14px;
+  color: var(--sub);
+  margin-top: 12px;
+  line-height: 1.7;
+}
+.struct {
+  margin-top: 24px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 10px;
+}
+.st-box {
+  border-top: 3px solid var(--main);
+  background: var(--bg);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+}
+.st-pct {
+  font-size: 28px;
+  font-weight: 900;
+  color: var(--main);
+  line-height: 1;
+  letter-spacing: -0.02em;
+}
+.st-pct small { font-size: 14px; }
+.st-kanji {
+  font-size: 15px;
+  font-weight: 800;
+  color: var(--text);
+  margin-top: 6px;
+}
+.st-desc {
+  font-size: 10.5px;
+  color: var(--sub);
+  margin-top: 4px;
+  line-height: 1.45;
+}
+
+/* ===== 段階スライド共通 ===== */
+.stg-head {
+  display: flex;
+  align-items: baseline;
+  gap: 14px;
+  margin-bottom: 4px;
+}
+.stg-pct {
+  font-size: 36px;
+  font-weight: 900;
+  color: var(--main);
+  line-height: 1;
+}
+.stg-pct small { font-size: 16px; }
+.stg-kanji {
+  font-size: 26px;
+  font-weight: 800;
+  color: var(--text);
+}
+.stg-kanji .hi { color: var(--main); }
+.stg-lead {
+  font-size: 12px;
+  color: var(--sub);
+  margin-bottom: 12px;
+}
+.stg-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+.stg-body.wide { gap: 16px; }
+.sec-block {
+  background: var(--bg);
+  border-left: 3px solid var(--main);
+  padding: 12px 16px;
+}
+.sec-block-head {
+  font-size: 14px;
+  font-weight: 800;
+  color: var(--main);
+  margin-bottom: 7px;
+}
+.sec-block-body {
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.xo {
+  display: flex;
+  gap: 8px;
+  margin-top: 8px;
+}
+.xo-item {
+  flex: 1;
+  padding: 8px 12px 8px 34px;
+  position: relative;
+  font-size: 13px;
+  line-height: 1.6;
+  background: var(--white);
+  border: 1px solid var(--line);
+}
+.xo-item::before {
+  position: absolute;
+  left: 8px; top: 6px;
+  width: 16px; height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 11px;
+  font-weight: 900;
+  color: #fff;
+}
+.xo-item.ng::before { content: "×"; background: #c44; }
+.xo-item.ok::before { content: "○"; background: #4a8b4a; }
+.callout {
+  background: var(--hi);
+  padding: 9px 14px 9px 34px;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: var(--text);
+  margin-top: 8px;
+  position: relative;
+}
+.callout::before {
+  content: "💡";
+  position: absolute;
+  left: 10px;
+  top: 8px;
+  font-size: 14px;
+}
+.check-list {
+  list-style: none;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+}
+.check-list li {
+  padding-left: 24px;
+  position: relative;
+  margin-bottom: 5px;
+}
+.check-list li::before {
+  content: "✓";
+  position: absolute;
+  left: 0; top: 1px;
+  width: 16px; height: 16px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.num-list {
+  list-style: none;
+  counter-reset: n;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.num-list li {
+  counter-increment: n;
+  padding-left: 28px;
+  position: relative;
+  margin-bottom: 6px;
+}
+.num-list li::before {
+  content: counter(n);
+  position: absolute;
+  left: 0; top: 1px;
+  width: 20px; height: 18px;
+  background: var(--main);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.two-col { display: grid; grid-template-columns: 1fr 1fr; gap: 10px; }
+
+/* ===== S6 STEPs ===== */
+.step-grid {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  gap: 10px;
+  min-height: 0;
+}
+.step-card {
+  background: var(--bg);
+  border-top: 3px solid var(--main);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+}
+.step-head {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 6px;
+}
+.step-num {
+  background: var(--main);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  padding: 3px 9px;
+}
+.step-title {
+  font-size: 13px;
+  font-weight: 800;
+  color: var(--text);
+}
+.step-body {
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+}
+.step-body .ng {
+  background: var(--white);
+  border-left: 2px solid #c44;
+  padding: 5px 10px;
+  margin-top: 5px;
+  font-size: 12px;
+  color: #733;
+}
+</style>
+</head>
+<body>
+
+<!-- S1 -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">01 / 06</div>
+  <div class="content">
+    <div class="sec-label">INTRODUCTION</div>
+    <div class="s1-wrap">
+      <div class="s1-kicker">GAKUCHIKA FROM ZERO</div>
+      <div class="s1-title">ゼロからの<span class="hi">ガクチカ</span>作り方</div>
+      <div class="s1-sub">ガクチカの構成は「起承転結」。各パートの役割と割合を押さえれば、ゼロからでも書ける</div>
+      <div class="struct">
+        <div class="st-box">
+          <div class="st-pct">30<small>%</small></div>
+          <div class="st-kanji">起</div>
+          <div class="st-desc">最初の1文で概要が伝わる／成果を明確に</div>
+        </div>
+        <div class="st-box">
+          <div class="st-pct">20<small>%</small></div>
+          <div class="st-kanji">承</div>
+          <div class="st-desc">課題設定／原因と目標を言語化する</div>
+        </div>
+        <div class="st-box">
+          <div class="st-pct">40<small>%</small></div>
+          <div class="st-kanji">転</div>
+          <div class="st-desc">課題解決の施策／一言＋具体を縦展開</div>
+        </div>
+        <div class="st-box">
+          <div class="st-pct">10<small>%</small></div>
+          <div class="st-kanji">結</div>
+          <div class="st-desc">結果／絶対値・倍数で難易度を伝える</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Gakuchika Guide</span><span>Structure</span></div>
+</div>
+
+<!-- S2: 起 -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">02 / 06</div>
+  <div class="content">
+    <div class="sec-label">PART 01 / KI</div>
+    <div class="stg-head"><div class="stg-pct">30<small>%</small></div><div class="stg-kanji"><span class="hi">「起」</span> 最初の1文で決まる</div></div>
+    <div class="stg-lead">頑張ったことではなく「出た成果」を明確に伝え、読み手が全体の概要を大まかに理解できるか</div>
+    <div class="stg-body">
+      <div class="sec-block">
+        <div class="sec-block-head">私が学生時代に頑張ったことは〜</div>
+        <div class="xo">
+          <div class="xo-item ng">〇〇部の活動です。</div>
+          <div class="xo-item ok">〇〇部で80名の部長として〇〇を改善しチームを優勝に導いた経験です。</div>
+        </div>
+        <div class="callout">組織で動いた経験の場合は、文頭で自分の立場や役割を提示すると読み手がイメージしやすい</div>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-head">2文目で前提共有をすべし ── 前提共有／背景説明</div>
+        <div class="sec-block-body">これがないと情景が頭に思い浮かばず、十分に魅力が伝わらない可能性が。</div>
+        <div class="xo">
+          <div class="xo-item ng">カフェのバイト</div>
+          <div class="xo-item ok">1日1000人以上来店する新宿駅内のカフェで、お客様に合わせてコーヒーアートを作るバイト</div>
+        </div>
+        <div class="callout">固有名詞・修飾語で面接官が情景を連想しやすい形に言語化を磨いていく</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Part 01</span><span>30% / 起</span></div>
+</div>
+
+<!-- S3: 承 -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">03 / 06</div>
+  <div class="content">
+    <div class="sec-label">PART 02 / SHO</div>
+    <div class="stg-head"><div class="stg-pct">20<small>%</small></div><div class="stg-kanji"><span class="hi">「承」</span> 問題点の洗い出しで決まる</div></div>
+    <div class="stg-lead">課題／問題 ＋ 原因 ＋ 目標設定 の3要素に分解できる</div>
+    <div class="stg-body wide">
+      <div class="sec-block">
+        <div class="sec-block-head">① 課題</div>
+        <div class="sec-block-body">部員全員の練習の質が低下していたことが課題でした。</div>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-head">② 原因 ── 課題から施策に飛ばず、発生原因まで言語化する</div>
+        <div class="sec-block-body">それぞれの強みが発揮できない人員配置とモチベーション低下が原因だと考えました。</div>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-head">③ 目標設定 ── 課題解決後の目標を提示し、施策導入意図を明確に</div>
+        <div class="sec-block-body">全員が主体的に取り組めるチーム作りで〇〇大会優勝を目指して、2つの施策を実行しました。</div>
+      </div>
+      <div class="callout">思考回路や想いも入れることで、どう考えながら動いたのかが伝わりやすい</div>
+    </div>
+  </div>
+  <div class="footer"><span>Part 02</span><span>20% / 承</span></div>
+</div>
+
+<!-- S4: 転 -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">04 / 06</div>
+  <div class="content">
+    <div class="sec-label">PART 03 / TEN</div>
+    <div class="stg-head"><div class="stg-pct">40<small>%</small></div><div class="stg-kanji"><span class="hi">「転」</span> 施策で決まる</div></div>
+    <div class="stg-lead">ラベリングを活用し文章を縦展開／抽象(一言キーワード)と具体性の両立</div>
+    <div class="stg-body wide">
+      <div class="two-col">
+        <div class="sec-block">
+          <div class="sec-block-head">施策を一言で</div>
+          <div class="sec-block-body">1つ目は個別練習メニューの作成です。</div>
+        </div>
+        <div class="sec-block">
+          <div class="sec-block-head">施策を具体的に説明</div>
+          <div class="sec-block-body">全員が目的意識を持って取り組むにはメニュー最適化が必要だと考え、強みと役割を最大限伸ばすメニューを作成。</div>
+        </div>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-head">CHECK POINT</div>
+        <ol class="num-list">
+          <li>行動事実が具体的か？</li>
+          <li>独自の改善や改良があるか？</li>
+          <li>周囲への影響を及ぼしているか？困難な阻害要因を乗り越えているか？</li>
+          <li>周囲の行動変容を伴っているか？</li>
+        </ol>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Part 03</span><span>40% / 転</span></div>
+</div>
+
+<!-- S5: 結 -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">05 / 06</div>
+  <div class="content">
+    <div class="sec-label">PART 04 / KETSU</div>
+    <div class="stg-head"><div class="stg-pct">10<small>%</small></div><div class="stg-kanji"><span class="hi">「結」</span> 結果で決まる</div></div>
+    <div class="stg-lead">詳細な結論 ── 一文目より具体的な成果や変化／難易度やすごさが伝わる文に</div>
+    <div class="stg-body wide">
+      <div class="sec-block">
+        <div class="sec-block-head">絶対値や倍数で伝える</div>
+        <div class="sec-block-body">以上の施策により、半年で〇〇を〇倍にし、〇年間で初の大会優勝を実現しました。</div>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-head">施策を具体的に補足</div>
+        <div class="sec-block-body">部員を〇人から〇人まで増加させました。</div>
+      </div>
+      <div class="sec-block">
+        <div class="sec-block-head">Q. 学びを入れた方が良い？&nbsp;&nbsp;→&nbsp;&nbsp;A. 入れなくて良い！</div>
+        <div class="sec-block-body">面接は会話だから、質問に対して簡潔に答えることが重要。「力入れたことは？」に対して「これを学びました」は質問意図とズレている。</div>
+      </div>
+      <div class="callout">就活本やアドバイザーが絶対正しいなんて無い。情報を客観的に比較する力も就活で磨いてほしい</div>
+    </div>
+  </div>
+  <div class="footer"><span>Part 04</span><span>10% / 結</span></div>
+</div>
+
+<!-- S6: ブラッシュアップ -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">06 / 06</div>
+  <div class="content">
+    <div class="sec-label">BRUSH UP</div>
+    <div class="stg-head"><div class="stg-kanji">就活生同士での<span class="hi">ブラッシュアップ</span>方法</div></div>
+    <div class="stg-lead">4ステップで相互に磨き合う。1人で抱え込まず、音声→構造化→深掘り→数値化</div>
+    <div class="step-grid">
+      <div class="step-card">
+        <div class="step-head"><span class="step-num">STEP 01</span><span class="step-title">音声→構造化して文字起こし</span></div>
+        <div class="step-body">音声情報で相手に伝え、聞く人は起承転結で構造化しながら文字起こしをする。</div>
+      </div>
+      <div class="step-card">
+        <div class="step-head"><span class="step-num">STEP 02</span><span class="step-title">抜け・論理飛躍の相互確認</span></div>
+        <div class="step-body">抜けている構造や魅力が伝わらない部分を相互確認。論理の飛躍がないかもチェック。
+          <div class="ng">NG：前提情報不足で課題をイメージできない</div>
+          <div class="ng">NG：根本原因がなくいきなり施策に移っている</div>
+        </div>
+      </div>
+      <div class="step-card">
+        <div class="step-head"><span class="step-num">STEP 03</span><span class="step-title">専門用語を平易な言葉へ</span></div>
+        <div class="step-body">難しい言葉や理解しにくい専門用語がないか確認。相手がすんなり理解できる言葉に置き換える。</div>
+      </div>
+      <div class="step-card">
+        <div class="step-head"><span class="step-num">STEP 04</span><span class="step-title">数値で難易度・すごさを表現</span></div>
+        <div class="step-body">結果や課題で数値が効果的に使用されているか。エピソードを深掘りながら、難易度やすごさが伝わる表現方法を探す。</div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Brush Up</span><span>Peer Review</span></div>
+</div>
+
+</body>
+</html>

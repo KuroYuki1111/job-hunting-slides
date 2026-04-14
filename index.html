@@ -3,548 +3,144 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>戦略的自己紹介 資料</title>
+<title>就活資料まとめ | Career Guide</title>
 <style>
 *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-:root {
-  --navy:  #2b3990;
-  --blue:  #4a90d9;
-  --text:  #1a1a2e;
-  --sub:   #555566;
-  --line:  #d8dce8;
-  --bg:    #f7f8fc;
-  --white: #ffffff;
-}
-
 body {
   font-family: 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif;
-  background: #e8eaf2;
-  color: var(--text);
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  padding: 40px 16px 80px;
-  gap: 3px;
+  background: #f4f4f8;
+  color: #1a1a2e;
+  min-height: 100vh;
+  padding: 60px 20px;
 }
-
-/* ===== SLIDE 共通 ===== */
-.slide {
-  width: 960px;
-  height: 540px;
-  background: var(--white);
-  position: relative;
-  overflow: hidden;
-  flex-shrink: 0;
-  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
-}
-.bar {
-  position: absolute;
-  top: 0; left: 0; right: 0;
-  height: 5px;
-  background: var(--navy);
-}
-.logo {
-  position: absolute;
-  top: 16px; left: 32px;
-  font-size: 11px;
+.wrap { max-width: 960px; margin: 0 auto; }
+.header { text-align: center; margin-bottom: 60px; }
+.kicker {
+  font-size: 12px;
+  letter-spacing: 0.25em;
+  color: #2b3990;
   font-weight: 700;
-  color: var(--navy);
-  letter-spacing: 0.06em;
-}
-.pnum {
-  position: absolute;
-  bottom: 12px; right: 24px;
-  font-size: 10px;
-  color: #bbb;
-}
-/* セクションラベル（左縦線） */
-.slabel {
-  display: flex;
-  align-items: center;
-  gap: 9px;
-  margin-bottom: 12px;
-}
-.slabel::before {
-  content: '';
-  width: 3px; height: 16px;
-  background: var(--navy);
-  display: block;
-  flex-shrink: 0;
-}
-.slabel span {
-  font-size: 10.5px;
-  font-weight: 700;
-  color: var(--navy);
-  letter-spacing: 0.12em;
-}
-/* コンテンツ共通ラッパ */
-.ct {
-  position: absolute;
-  top: 42px; left: 52px; right: 52px; bottom: 28px;
-  display: flex;
-  flex-direction: column;
-}
-.stitle {
-  font-size: 22px;
-  font-weight: 700;
-  color: var(--text);
   margin-bottom: 14px;
+}
+h1 {
+  font-size: 42px;
+  font-weight: 800;
+  color: #1a1a2e;
   line-height: 1.3;
+  margin-bottom: 14px;
 }
-.stitle em { font-style: normal; color: var(--navy); }
-
-
-/* =============================================
-   S1: タイトル
-============================================= */
-#s1 { background: var(--navy); }
-#s1 .bar { background: rgba(255,255,255,0.18); }
-#s1 .logo { color: rgba(255,255,255,0.45); }
-#s1 .deco-r {
-  position: absolute;
-  right: 0; top: 0; bottom: 0; width: 300px;
-  background: rgba(255,255,255,0.035);
-  border-left: 1px solid rgba(255,255,255,0.08);
-}
-#s1 .inner {
-  position: absolute;
-  top: 50%; left: 72px;
-  transform: translateY(-52%);
-}
-#s1 .catch {
-  font-size: 11px; font-weight: 400;
-  color: rgba(255,255,255,0.55);
-  letter-spacing: 0.28em;
-  margin-bottom: 18px;
-}
-#s1 .title {
-  font-size: 44px; font-weight: 800;
-  color: #fff;
-  line-height: 1.3;
-  letter-spacing: 0.02em;
-  margin-bottom: 32px;
-}
-#s1 .title em { font-style: normal; color: #7eb8f5; }
-#s1 .goals { display: flex; flex-direction: column; gap: 12px; }
-#s1 .goal-item {
-  display: flex; align-items: center; gap: 14px;
-  font-size: 15px; color: rgba(255,255,255,0.88);
-  font-weight: 500;
-}
-#s1 .goal-num {
-  width: 26px; height: 26px;
-  border: 1.5px solid rgba(255,255,255,0.4);
-  color: rgba(255,255,255,0.7);
-  font-size: 10px; font-weight: 700;
-  display: flex; align-items: center; justify-content: center;
-  flex-shrink: 0;
-  letter-spacing: 0.05em;
-}
-#s1 .dots {
-  position: absolute;
-  right: 36px; bottom: 36px;
+h1 .hi { color: #2b3990; }
+.sub { font-size: 15px; color: #555566; line-height: 1.7; }
+.grid {
   display: grid;
-  grid-template-columns: repeat(8, 1fr);
-  gap: 8px;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
 }
-#s1 .dots span {
-  width: 4px; height: 4px;
-  border-radius: 50%;
-  background: rgba(255,255,255,0.14);
+.card {
   display: block;
+  background: #fff;
+  padding: 26px 28px;
+  text-decoration: none;
+  color: inherit;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.06);
+  border-top: 4px solid var(--c, #2b3990);
+  transition: transform 0.15s ease, box-shadow 0.15s ease;
 }
-
-
-/* =============================================
-   S2: Agenda
-============================================= */
-#s2 .lp {
-  position: absolute;
-  top: 0; left: 0; bottom: 0; width: 240px;
-  background: var(--navy);
-  display: flex; align-items: center; justify-content: center;
+.card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 18px rgba(0,0,0,0.12);
 }
-#s2 .lp-word {
-  font-size: 40px; font-weight: 800;
-  color: #fff; letter-spacing: 0.04em;
+.card-num {
+  font-size: 11px;
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  color: var(--c, #2b3990);
+  margin-bottom: 6px;
 }
-#s2 .rp {
-  position: absolute;
-  top: 0; left: 240px; right: 0; bottom: 0;
-  display: flex; flex-direction: column;
-  justify-content: center;
-  padding: 0 56px;
+.card-title {
+  font-size: 20px;
+  font-weight: 800;
+  margin-bottom: 10px;
+  line-height: 1.4;
 }
-#s2 .ag-item {
-  display: flex; align-items: center;
-  padding: 17px 0;
-  border-bottom: 1px solid var(--line);
+.card-desc {
+  font-size: 12.5px;
+  color: #666677;
+  line-height: 1.65;
 }
-#s2 .ag-item:first-child { border-top: 1px solid var(--line); }
-#s2 .ag-num {
-  font-size: 12px; font-weight: 300;
-  color: var(--navy); width: 36px; flex-shrink: 0;
-  letter-spacing: 0.05em;
+.card-meta {
+  margin-top: 14px;
+  font-size: 11px;
+  color: #888;
+  display: flex;
+  justify-content: space-between;
 }
-#s2 .ag-dots { flex: 1; border-bottom: 1px dotted #bbb; margin: 0 14px 3px; }
-#s2 .ag-title { font-size: 17px; font-weight: 600; color: var(--text); }
-#s2 .ag-page {
-  font-size: 12px; font-weight: 300;
-  color: var(--sub); width: 32px; text-align: right;
+.footer {
+  text-align: center;
+  margin-top: 60px;
+  font-size: 11px;
+  color: #888;
 }
-
-
-/* =============================================
-   S3: 自己紹介 vs 自己PR
-============================================= */
-#s3 .stitle { margin-bottom: 12px; }
-#s3 .two-col {
-  display: grid; grid-template-columns: 1fr 1fr;
-  gap: 20px; flex: 1; min-height: 0;
+@media (max-width: 640px) {
+  .grid { grid-template-columns: 1fr; }
+  h1 { font-size: 30px; }
 }
-#s3 .card {
-  border: 1px solid var(--line);
-  display: flex; flex-direction: column; min-height: 0;
-}
-#s3 .card-head {
-  padding: 11px 18px;
-  display: flex; align-items: center; justify-content: space-between;
-  flex-shrink: 0;
-}
-#s3 .card-head.nv { background: var(--navy); }
-#s3 .card-head.lt { background: var(--bg); border-bottom: 1px solid var(--line); }
-#s3 .card-head-title { font-size: 16px; font-weight: 800; letter-spacing: 0.04em; }
-#s3 .card-head.nv .card-head-title { color: #fff; }
-#s3 .card-head.lt .card-head-title { color: var(--navy); }
-#s3 .card-head-time { font-size: 11px; color: rgba(255,255,255,0.6); }
-#s3 .card-head.lt .card-head-time { color: var(--sub); }
-#s3 .card-body {
-  padding: 14px 18px;
-  flex: 1; display: flex; flex-direction: column; gap: 8px;
-}
-#s3 .frow {
-  display: flex; align-items: flex-start; gap: 8px;
-  font-size: 13.5px; color: var(--text); line-height: 1.6;
-}
-#s3 .frow .pl { color: var(--navy); font-weight: 700; width: 16px; flex-shrink: 0; }
-#s3 .frow .key { font-weight: 800; color: var(--navy); }
-#s3 .nbox {
-  margin-top: auto;
-  background: var(--bg); border-left: 3px solid var(--navy);
-  padding: 9px 12px; font-size: 12px; color: var(--sub); line-height: 1.65;
-}
-#s3 .warn {
-  flex-shrink: 0; margin-top: 11px;
-  background: #fff8f0; border: 1px solid #f0d0a0;
-  padding: 9px 14px; font-size: 12px; color: #7a4e10;
-}
-#s3 .warn strong { color: #c07010; }
-
-
-/* =============================================
-   S4: ポイント3選
-============================================= */
-#s4 .stitle { margin-bottom: 12px; }
-#s4 .pts {
-  display: grid; grid-template-columns: repeat(3, 1fr);
-  gap: 16px; flex: 1; min-height: 0;
-}
-#s4 .pt {
-  border: 1px solid var(--line);
-  display: flex; flex-direction: column; min-height: 0;
-}
-#s4 .pt-head {
-  background: var(--navy); color: #fff;
-  font-size: 11px; font-weight: 700;
-  letter-spacing: 0.06em; padding: 9px 14px;
-  flex-shrink: 0; line-height: 1.4;
-}
-#s4 .pt-body {
-  padding: 13px 14px; flex: 1;
-  display: flex; flex-direction: column; gap: 7px; overflow: hidden;
-}
-#s4 .pt-pattern {
-  font-size: 10px; font-weight: 700;
-  color: var(--blue); letter-spacing: 0.08em;
-}
-#s4 .pt-quote {
-  border-left: 2px solid var(--line);
-  padding: 5px 9px; font-size: 11.5px;
-  color: #666; line-height: 1.6; font-style: italic;
-}
-#s4 .pt-desc { font-size: 12px; color: var(--sub); line-height: 1.6; }
-#s4 .pt-desc strong { color: var(--navy); }
-
-
-/* =============================================
-   S5: パターン③ + スクリプト（統合）
-============================================= */
-#s5 .stitle { margin-bottom: 10px; }
-#s5 .body {
-  display: grid; grid-template-columns: 1fr 1.6fr;
-  gap: 24px; flex: 1; min-height: 0;
-}
-/* 左：フロー図 */
-#s5 .flow-wrap { display: flex; flex-direction: column; gap: 0; justify-content: space-between; }
-#s5 .flow-block { display: flex; flex-direction: column; gap: 8px; }
-#s5 .fl-label {
-  font-size: 10.5px; font-weight: 700;
-  color: var(--sub); letter-spacing: 0.08em;
-}
-#s5 .fl-row { display: flex; align-items: stretch; }
-#s5 .fl-box {
-  flex: 1; border: 1px solid var(--line);
-  padding: 12px 10px; text-align: center;
-  font-size: 12.5px; font-weight: 700; color: var(--text); line-height: 1.45;
-}
-#s5 .fl-box small {
-  display: block; font-size: 9.5px; font-weight: 400;
-  color: var(--sub); margin-bottom: 4px;
-}
-#s5 .fl-box.nv { background: var(--navy); color: #fff; border-color: var(--navy); }
-#s5 .fl-box.nv small { color: rgba(255,255,255,0.6); }
-#s5 .fl-box.gd { background: #fff8e6; border-color: #d4a020; color: #7a5010; }
-#s5 .fl-box.gd small { color: #a07830; }
-#s5 .fl-arr {
-  display: flex; align-items: center;
-  padding: 0 8px; font-size: 16px; color: var(--navy); flex-shrink: 0;
-}
-#s5 .fl-div { height: 1px; background: var(--line); margin: 10px 0; }
-/* 右：スクリプト */
-#s5 .script-wrap {
-  display: flex; flex-direction: column; min-height: 0;
-}
-#s5 .sc-meta {
-  display: flex; align-items: center; gap: 8px; margin-bottom: 8px; flex-wrap: wrap;
-}
-#s5 .sc-label {
-  font-size: 10px; font-weight: 700;
-  letter-spacing: 0.12em; color: var(--sub);
-}
-#s5 .tag {
-  font-size: 10.5px; border: 1px solid var(--navy);
-  color: var(--navy); padding: 2px 9px;
-}
-#s5 .script {
-  flex: 1; min-height: 0;
-  border: 1px solid var(--line);
-  background: var(--bg);
-  padding: 13px 16px;
-  font-size: 12.5px; color: var(--text); line-height: 1.85;
-  overflow-y: auto;
-}
-#s5 .script strong { color: var(--navy); font-weight: 700; }
-#s5 .script em { font-style: normal; background: #e8f0ff; padding: 0 2px; }
 </style>
 </head>
 <body>
+<div class="wrap">
+  <div class="header">
+    <div class="kicker">JOB HUNTING MATERIALS</div>
+    <h1>就活<span class="hi">資料まとめ</span></h1>
+    <div class="sub">面接・ES・スケジュール・ツール活用まで<br>就活対策に使える資料を一覧で公開しています</div>
+  </div>
 
-<!-- ===== S1: タイトル ===== -->
-<div class="slide" id="s1">
-  <div class="bar"></div>
-  <div class="logo">就活準備資料</div>
-  <div class="deco-r"></div>
-  <div class="inner">
-    <div class="catch">STRATEGIC SELF-INTRODUCTION</div>
-    <div class="title">面接官の心をつかむ、<br><em>自己紹介</em>の作り方</div>
-    <div class="goals">
-      <div class="goal-item">
-        <div class="goal-num">01</div>
-        戦略的な自己紹介のポイントを知る
-      </div>
-      <div class="goal-item">
-        <div class="goal-num">02</div>
-        内定者の実際の自己紹介を活用する
-      </div>
-    </div>
+  <div class="grid">
+    <a class="card" href="slides3.html" style="--c:#2b3990;">
+      <div class="card-num">VOL. 01</div>
+      <div class="card-title">戦略的自己紹介の作り方</div>
+      <div class="card-desc">面接官の心をつかむ自己紹介とは。自己PRとの違い・3つのポイント・内定者スクリプトを収録。</div>
+      <div class="card-meta"><span>5 slides</span><span>Navy</span></div>
+    </a>
+
+    <a class="card" href="slides4.html" style="--c:#8b2c3d;">
+      <div class="card-num">VOL. 02</div>
+      <div class="card-title">内定者の就活スケジュール全公開</div>
+      <div class="card-desc">日系大手5社内定者と27卒年内内定者の月別スケジュール、やってよかった/おけばよかったこと。</div>
+      <div class="card-meta"><span>5 slides</span><span>Burgundy</span></div>
+    </a>
+
+    <a class="card" href="slides5.html" style="--c:#1b5e6f;">
+      <div class="card-num">VOL. 03</div>
+      <div class="card-title">就活アプリのオススメ・活用法</div>
+      <div class="card-desc">優先度別に厳選。ワンキャリア・ビズリーチ・Unistyle等の活用法をまとめて紹介。</div>
+      <div class="card-meta"><span>5 slides</span><span>Teal</span></div>
+    </a>
+
+    <a class="card" href="slides6.html" style="--c:#3d3a7a;">
+      <div class="card-num">VOL. 04</div>
+      <div class="card-title">面接対策・想定質問リスト</div>
+      <div class="card-desc">自己PR/ガクチカ/パーソナル/志望動機の4カテゴリ全45問＋質問予測のコツ。</div>
+      <div class="card-meta"><span>5 slides</span><span>Indigo</span></div>
+    </a>
+
+    <a class="card" href="slides7.html" style="--c:#6b1f2e;">
+      <div class="card-num">VOL. 05</div>
+      <div class="card-title">ゼロからのガクチカ作り方</div>
+      <div class="card-desc">起承転結で構成する方法。割合(30/20/40/10%)とCHECK POINT、ブラッシュアップ手順。</div>
+      <div class="card-meta"><span>6 slides</span><span>Wine</span></div>
+    </a>
+
+    <a class="card" href="slides8.html" style="--c:#b8860b;">
+      <div class="card-num">VOL. 06</div>
+      <div class="card-title">ガクチカの面接での話し方</div>
+      <div class="card-desc">集団面接/個別面接の対策比較、300字・200字のサンプル台本、反応を見た会話術。</div>
+      <div class="card-meta"><span>5 slides</span><span>Gold</span></div>
+    </a>
   </div>
-  <div class="dots">
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-    <span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span>
-  </div>
-  <div class="pnum">1</div>
+
+  <div class="footer">© Career Guide / Job Hunting Slides</div>
 </div>
-
-
-<!-- ===== S2: Agenda ===== -->
-<div class="slide" id="s2">
-  <div class="bar"></div>
-  <div class="logo">就活準備資料</div>
-  <div class="lp"><div class="lp-word">Agenda</div></div>
-  <div class="rp">
-    <div class="ag-item">
-      <span class="ag-num">01.</span>
-      <span class="ag-title">自己紹介と自己PRの違い</span>
-      <span class="ag-dots"></span>
-      <span class="ag-page">P3</span>
-    </div>
-    <div class="ag-item">
-      <span class="ag-num">02.</span>
-      <span class="ag-title">自己紹介で意識するポイント3選</span>
-      <span class="ag-dots"></span>
-      <span class="ag-page">P4</span>
-    </div>
-    <div class="ag-item">
-      <span class="ag-num">03.</span>
-      <span class="ag-title">活用パターン③　パーソナルネタを混ぜる</span>
-      <span class="ag-dots"></span>
-      <span class="ag-page">P5</span>
-    </div>
-  </div>
-  <div class="pnum">2</div>
-</div>
-
-
-<!-- ===== S3: 自己紹介 vs 自己PR ===== -->
-<div class="slide" id="s3">
-  <div class="bar"></div>
-  <div class="logo">就活準備資料</div>
-  <div class="ct">
-    <div class="slabel"><span>SECTION 01　自己紹介と自己PRの違い</span></div>
-    <div class="stitle">自己紹介と自己PRは、<em>役割が違う</em></div>
-    <div class="two-col">
-      <div class="card">
-        <div class="card-head nv">
-          <span class="card-head-title">自己紹介</span>
-          <span class="card-head-time">🕒 15秒〜</span>
-        </div>
-        <div class="card-body">
-          <div class="frow"><span class="pl"></span><span>名前</span></div>
-          <div class="frow"><span class="pl">＋</span><span>大学・学部学科</span></div>
-          <div class="frow"><span class="pl">＋</span><span>専攻している学問</span></div>
-          <div class="frow"><span class="pl">＋</span><span class="key">α（経験・強みを軽く）← ここが肝心！</span></div>
-          <div class="nbox">
-            ＋αの部分で「種まき」「印象付け」「キャラ出し」ができる。<br>
-            ⇒ 自己紹介では＋αの部分を意識してつくる！
-          </div>
-        </div>
-      </div>
-      <div class="card">
-        <div class="card-head lt">
-          <span class="card-head-title">自己PR</span>
-          <span class="card-head-time">🕒 30秒〜1分</span>
-        </div>
-        <div class="card-body">
-          <div class="frow"><span class="pl"></span><span>強みは〇〇です</span></div>
-          <div class="frow"><span class="pl">➡</span><span>培った経験・活かした経験</span></div>
-          <div class="frow"><span class="pl">➡</span><span>具体的なエピソードを展開</span></div>
-          <div class="nbox" style="border-left-color:#aaa;">
-            自己紹介とは別物として準備すること。<br>
-            自己紹介のあとに自然につながる流れを意識する。
-          </div>
-        </div>
-      </div>
-    </div>
-    <div class="warn">
-      <strong>⚠ 注意</strong>　面接官から指示がある場合は従うこと（名前のみ・大学名なし・時間指定など）。<br>
-      時間指定がある場合もある。<strong>⇒ 何パターンか用意しておくのがおすすめ◎</strong>
-    </div>
-  </div>
-  <div class="pnum">3</div>
-</div>
-
-
-<!-- ===== S4: ポイント3選 ===== -->
-<div class="slide" id="s4">
-  <div class="bar"></div>
-  <div class="logo">就活準備資料</div>
-  <div class="ct">
-    <div class="slabel"><span>SECTION 02　自己紹介で意識するポイント3選</span></div>
-    <div class="stitle">この3つを意識するだけで、<em>面接の質が変わる</em></div>
-    <div class="pts">
-
-      <div class="pt">
-        <div class="pt-head">POINT 01　面接の種まきをする</div>
-        <div class="pt-body">
-          <div class="pt-pattern">活用パターン①：経験を広く浅く話す</div>
-          <div class="pt-quote">「高校時代には〇〇、大学時代には〇〇の活動に注力してきました。どちらでも△△の役割を担っておりました。～～は中学生のころから、10年以上続けております。」</div>
-          <div class="pt-desc">⇒ 自己紹介後に<strong>深掘り質問をされることがある！</strong><br>ガクチカや自己PRでは使わないエピソードを散りばめるのも◎</div>
-        </div>
-      </div>
-
-      <div class="pt">
-        <div class="pt-head">POINT 02　面接官に印象を残す</div>
-        <div class="pt-body">
-          <div class="pt-pattern">活用パターン②：キャッチコピーを使う</div>
-          <div class="pt-quote">「私を一言で表すと『〇〇』です！〜することが多く友人や家族からこのように呼ばれています！」</div>
-          <div class="pt-desc">
-            例）<strong>「みんなの笑顔が原動力」</strong>…与えたい印象を言語化し潜在的印象をコントロール<br>
-            <strong>「行動力の塊」</strong>…大人しく見られがちな人が、アピールしたい性格をここで伝えると効果的！
-          </div>
-        </div>
-      </div>
-
-      <div class="pt">
-        <div class="pt-head">POINT 03　キャラクターを見せる</div>
-        <div class="pt-body">
-          <div class="pt-pattern">活用パターン③：パーソナルネタを混ぜる</div>
-          <div class="pt-desc">キャラクターに<strong>一貫性を出す</strong> or <strong>ギャップを見せる</strong>の2パターン。</div>
-          <div class="pt-quote">
-            例）「冷静なキャラに見られる」<br>
-            → ギャップ：チャレンジ精神・粘り強さをアピール<br>
-            → 一貫性：冷静なキャラ・ストレス耐性を再アピール
-          </div>
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="pnum">4</div>
-</div>
-
-
-<!-- ===== S5: パターン③詳細 + 内定者スクリプト（統合） ===== -->
-<div class="slide" id="s5">
-  <div class="bar"></div>
-  <div class="logo">就活準備資料</div>
-  <div class="ct">
-    <div class="slabel"><span>SECTION 03　活用パターン③ パーソナルネタを混ぜる（＝キャラクターを見せる）</span></div>
-    <div class="stitle">キャラクターに<em>一貫性を出す</em> or <em style="color:var(--blue)">ギャップを見せる</em></div>
-
-    <div class="body">
-
-      <!-- 左：フロー図 -->
-      <div class="flow-wrap">
-        <div class="flow-block">
-          <div class="fl-label">APPROACH A　ギャップ型</div>
-          <div class="fl-row">
-            <div class="fl-box"><small>START</small>「冷静なキャラ<br>に見られる」</div>
-            <div class="fl-arr">→</div>
-            <div class="fl-box nv"><small>ギャップ</small>チャレンジ精神・<br>粘り強さをアピール</div>
-          </div>
-        </div>
-        <div class="fl-div"></div>
-        <div class="flow-block">
-          <div class="fl-label">APPROACH B　一貫性型</div>
-          <div class="fl-row">
-            <div class="fl-box"><small>START</small>「冷静なキャラ<br>に見られる」</div>
-            <div class="fl-arr">→</div>
-            <div class="fl-box gd"><small>一貫性</small>冷静なキャラ・<br>ストレス耐性を再アピール</div>
-          </div>
-        </div>
-      </div>
-
-      <!-- 右：内定者スクリプト -->
-      <div class="script-wrap">
-        <div class="sc-meta">
-          <span class="sc-label">内定者の実際の自己紹介　インパクト重視型</span>
-          <span class="tag">文系学部生</span>
-          <span class="tag">メーカー・金融</span>
-        </div>
-        <div class="script">
-          〇〇大学文学部の〇〇です。<strong>「二兎を追う者は一兎をも得ず」</strong>ということわざがありますが、私の強みは二兎どころか<strong>三兎も四兎も追いかけるチャレンジ精神</strong>です。私が大学時代に追いかけて捕まえた、3羽の兎についてお話しさせていただきます。<br>
-          <em>1羽目</em>は、海外経験がないいわゆる純ジャパの状態で経験した交換留学です。（サブガクチカ）苦労も多かったのですが、最終的に、<strong>GPA3.9/4.0</strong>という成績をいただくことができました。<em>2羽目</em>は、〇〇サークルに挑戦したことです。二年間で〜することができました。（ガクチカ）<em>3羽目</em>は、〇〇未経験の状態で、〇〇サークルに飛び込んだことです。引退時には、〇〇できました。<br>
-          本日は大変緊張しておりますが、私のありのままの人柄と御社への熱意が伝わるよう精一杯頑張りますので、よろしくお願いします。
-        </div>
-      </div>
-
-    </div>
-  </div>
-  <div class="pnum">5</div>
-</div>
-
 </body>
 </html>

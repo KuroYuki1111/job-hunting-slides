@@ -1,0 +1,452 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>面接対策 想定質問リスト</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --main:  #3d3a7a;
+  --sub-c: #5c58a8;
+  --accent:#e8b547;
+  --text:  #1a1930;
+  --sub:   #605d75;
+  --line:  #e0dfea;
+  --bg:    #f5f5fa;
+  --hi:    #fdf6e4;
+  --white: #ffffff;
+}
+
+body {
+  font-family: 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  background: #e4e3ec;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px 80px;
+  gap: 3px;
+}
+
+.slide {
+  width: 960px;
+  height: 540px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+.bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: var(--main);
+}
+.logo {
+  position: absolute;
+  top: 16px; left: 32px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--main);
+  letter-spacing: 0.08em;
+}
+.pagenum {
+  position: absolute;
+  top: 16px; right: 32px;
+  font-size: 11px;
+  color: var(--sub);
+  letter-spacing: 0.1em;
+}
+.footer {
+  position: absolute;
+  bottom: 14px; left: 32px; right: 32px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--sub);
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+.sec-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--main);
+  letter-spacing: 0.15em;
+  padding-left: 12px;
+  border-left: 3px solid var(--main);
+  margin-bottom: 10px;
+}
+.content {
+  position: absolute;
+  top: 54px; left: 48px; right: 48px; bottom: 42px;
+  display: flex;
+  flex-direction: column;
+}
+
+/* S1 */
+.s1-wrap { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.s1-kicker {
+  font-size: 13px;
+  color: var(--main);
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  margin-bottom: 16px;
+}
+.s1-title {
+  font-size: 42px;
+  font-weight: 800;
+  line-height: 1.25;
+  color: var(--text);
+}
+.s1-title .hi { color: var(--main); }
+.s1-sub {
+  font-size: 15px;
+  color: var(--sub);
+  margin-top: 14px;
+  line-height: 1.7;
+}
+.s1-grid {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 12px;
+}
+.s1-box {
+  border: 1.5px solid var(--main);
+  padding: 12px 14px;
+  background: var(--bg);
+}
+.s1-box-num {
+  font-size: 10px;
+  color: var(--main);
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.s1-box-text {
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* Q list slides */
+.q-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.q-title .hi { color: var(--main); }
+.q-lead {
+  font-size: 11px;
+  color: var(--sub);
+  margin-bottom: 10px;
+}
+.q-body {
+  flex: 1;
+  min-height: 0;
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+.q-group {
+  display: flex;
+  flex-direction: column;
+}
+.q-group-head {
+  font-size: 12px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--main);
+  padding: 4px 12px;
+  margin-bottom: 6px;
+  display: inline-block;
+  width: fit-content;
+  letter-spacing: 0.08em;
+}
+.q-list {
+  list-style: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 5px 28px;
+  font-size: 14px;
+  line-height: 1.55;
+  color: var(--text);
+}
+.q-list.g3 { grid-template-columns: 1fr 1fr 1fr; }
+.q-list li {
+  padding-left: 38px;
+  position: relative;
+  padding-top: 3px;
+  padding-bottom: 3px;
+}
+.q-num {
+  position: absolute;
+  left: 0; top: 3px;
+  font-size: 11px;
+  font-weight: 800;
+  color: #fff;
+  background: var(--main);
+  width: 26px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  letter-spacing: 0.03em;
+}
+
+/* S5 method */
+.m-title {
+  font-size: 22px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 2px;
+}
+.m-title .hi { color: var(--main); }
+.m-lead {
+  font-size: 11px;
+  color: var(--sub);
+  margin-bottom: 12px;
+}
+.m-body {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  min-height: 0;
+}
+.m-para {
+  background: var(--bg);
+  border-left: 3px solid var(--main);
+  padding: 12px 16px;
+  font-size: 13px;
+  line-height: 1.75;
+  color: var(--text);
+}
+.m-para b { color: var(--main); }
+.m-example {
+  background: var(--white);
+  border: 1.5px dashed var(--sub-c);
+  padding: 12px 16px;
+}
+.m-example-head {
+  font-size: 11px;
+  font-weight: 800;
+  color: var(--main);
+  letter-spacing: 0.1em;
+  margin-bottom: 6px;
+}
+.m-example-body {
+  font-size: 12px;
+  line-height: 1.7;
+  color: var(--text);
+}
+.m-example-body .pair {
+  display: flex;
+  gap: 12px;
+  margin-top: 6px;
+}
+.m-example-body .pair .p {
+  flex: 1;
+  background: var(--bg);
+  padding: 8px 10px;
+  border-top: 2px solid var(--sub-c);
+  font-size: 12px;
+}
+.m-conclusion {
+  background: var(--hi);
+  padding: 10px 16px 10px 38px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.55;
+  position: relative;
+}
+.m-conclusion::before {
+  content: "✓";
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 2px;
+}
+</style>
+</head>
+<body>
+
+<!-- S1 -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">01 / 05</div>
+  <div class="content">
+    <div class="sec-label">INTRODUCTION</div>
+    <div class="s1-wrap">
+      <div class="s1-kicker">INTERVIEW PREPARATION</div>
+      <div class="s1-title">面接対策に活用しよう！<br><span class="hi">想定質問リスト</span></div>
+      <div class="s1-sub">自己PR・ガクチカ・パーソナル・志望動機の4カテゴリ／全45問＋質問予測のコツ</div>
+      <div class="s1-grid">
+        <div class="s1-box"><div class="s1-box-num">CATEGORY 01</div><div class="s1-box-text">自己PR</div></div>
+        <div class="s1-box"><div class="s1-box-num">CATEGORY 02</div><div class="s1-box-text">ガクチカ</div></div>
+        <div class="s1-box"><div class="s1-box-num">CATEGORY 03</div><div class="s1-box-text">パーソナル</div></div>
+        <div class="s1-box"><div class="s1-box-num">CATEGORY 04</div><div class="s1-box-text">志望動機</div></div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Interview Prep</span><span>Question List</span></div>
+</div>
+
+<!-- S2: 自己PR + ガクチカ -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">02 / 05</div>
+  <div class="content">
+    <div class="sec-label">QUESTIONS 01</div>
+    <div class="q-title">自己PR & <span class="hi">ガクチカ</span></div>
+    <div class="q-lead">まずは「自己紹介」から。強みとエピソードの深掘りに備える</div>
+    <div class="q-body">
+      <div class="q-group">
+        <div class="q-group-head">▼ 自己PR</div>
+        <ul class="q-list g3">
+          <li><span class="q-num">01</span>自己紹介して</li>
+          <li><span class="q-num">02</span>自己PRを1分で話して</li>
+          <li><span class="q-num">03</span>強みが培われたきっかけは？</li>
+          <li><span class="q-num">04</span>その強みを弊社でどう活かす？</li>
+          <li><span class="q-num">05</span>強みを表すエピソードをもう1つ</li>
+          <li><span class="q-num">06</span>周囲からどんな人と言われる？</li>
+          <li><span class="q-num">07</span>組織でどんな役割を担う？</li>
+        </ul>
+      </div>
+      <div class="q-group">
+        <div class="q-group-head">▼ ガクチカ</div>
+        <ul class="q-list g3">
+          <li><span class="q-num">08</span>ガクチカを1分で教えて</li>
+          <li><span class="q-num">09</span>それを始めたきっかけは？</li>
+          <li><span class="q-num">10</span>最も困難だったことは？</li>
+          <li><span class="q-num">11</span>なぜその課題が見つかった？</li>
+          <li><span class="q-num">12</span>役職は立候補？推薦？なぜ？</li>
+          <li><span class="q-num">13</span>周りの意見をどう受け止めた？</li>
+          <li><span class="q-num">14</span>施策後の現状を教えて</li>
+          <li><span class="q-num">15</span>ガクチカから何を学んだ？</li>
+          <li><span class="q-num">16</span>学びをどう仕事に活かす？</li>
+          <li><span class="q-num">17</span>同じ状況ならどんな施策を？</li>
+          <li><span class="q-num">18</span>ガクチカをもう1つ教えて</li>
+          <li><span class="q-num">19</span>挫折経験はある？</li>
+          <li><span class="q-num">20</span>その挫折をどう克服したの？</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Questions 01</span><span>Q01 - Q20</span></div>
+</div>
+
+<!-- S3: パーソナル -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">03 / 05</div>
+  <div class="content">
+    <div class="sec-label">QUESTIONS 02</div>
+    <div class="q-title">パーソナル系<span class="hi">質問</span></div>
+    <div class="q-lead">学生時代の過ごし方・進路選択の理由・自己理解の深さを問う</div>
+    <div class="q-body">
+      <div class="q-group">
+        <div class="q-group-head">▼ パーソナル系質問</div>
+        <ul class="q-list">
+          <li><span class="q-num">21</span>小学生の時どんな子だった？</li>
+          <li><span class="q-num">22</span>中学生の時どんな子だった？</li>
+          <li><span class="q-num">23</span>高校の時どんな子だった？</li>
+          <li><span class="q-num">24</span>なぜその高校？</li>
+          <li><span class="q-num">25</span>なぜその大学？</li>
+          <li><span class="q-num">26</span>なぜその学部？</li>
+          <li><span class="q-num">27</span>大学で何を学んだ？</li>
+          <li><span class="q-num">28</span>学んだことをどう会社で活かせる？</li>
+          <li><span class="q-num">29</span>弱みを教えて</li>
+          <li><span class="q-num">30</span>弱みをどのように克服している？</li>
+          <li><span class="q-num">31</span>もう1つ強み・弱みを教えて</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Questions 02</span><span>Q21 - Q31</span></div>
+</div>
+
+<!-- S4: 志望動機 -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">04 / 05</div>
+  <div class="content">
+    <div class="sec-label">QUESTIONS 03</div>
+    <div class="q-title">志望動機系<span class="hi">質問</span></div>
+    <div class="q-lead">業界・企業・職種・軸——なぜ？を多角的に問われる</div>
+    <div class="q-body">
+      <div class="q-group">
+        <div class="q-group-head">▼ 志望動機</div>
+        <ul class="q-list">
+          <li><span class="q-num">32</span>志望動機を1分で教えて</li>
+          <li><span class="q-num">33</span>自己PRと志望動機を併せて1分で</li>
+          <li><span class="q-num">34</span>なぜこの業界？</li>
+          <li><span class="q-num">35</span>希望する職種は？なぜ？</li>
+          <li><span class="q-num">36</span>なぜ弊社？</li>
+          <li><span class="q-num">37</span>競合他社との違いはどこ？</li>
+          <li><span class="q-num">38</span>弊社で実現したいことは？</li>
+          <li><span class="q-num">39</span>興味のある部署や商材は？</li>
+          <li><span class="q-num">40</span>行きたい部署に行けなかったらどうする？</li>
+          <li><span class="q-num">41</span>5年後・10年後のビジョンは？</li>
+          <li><span class="q-num">42</span>他社選考状況は？</li>
+          <li><span class="q-num">43</span>弊社の志望度はどれぐらい？</li>
+          <li><span class="q-num">44</span>就活の軸は？</li>
+          <li><span class="q-num">45</span>なぜその軸を選んだ？</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Questions 03</span><span>Q32 - Q45</span></div>
+</div>
+
+<!-- S5: 質問予測の方法 -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">05 / 05</div>
+  <div class="content">
+    <div class="sec-label">METHOD</div>
+    <div class="m-title">自分に来るであろう質問を<span class="hi">予測する方法</span></div>
+    <div class="m-lead">「準備した内容が質問されなかった…」を解消するために</div>
+    <div class="m-body">
+      <div class="m-para">
+        よく「面接で準備した内容が質問されなかった…」という悩みを耳にします。<br>
+        この問題を解決するためには、<b>面接練習の数を重ねて、質問の傾向を理解すること</b>が大切です。
+      </div>
+      <div class="m-example">
+        <div class="m-example-head">EXAMPLE ── 部活で部長を務めた経験をガクチカとして話した場合</div>
+        <div class="m-example-body">
+          同じエピソードでも、面接官によって着目点が変わる。
+          <div class="pair">
+            <div class="p">「どのような<b>施策</b>を行ったのか？」に着目する人</div>
+            <div class="p">「なぜ<b>部長に選ばれた</b>のか？」に着目する人</div>
+          </div>
+        </div>
+      </div>
+      <div class="m-conclusion">
+        質問の傾向は面接経験を重ねて得られる情報。友人や先輩にお願いして面接量をこなそう。回数をこなせば想定外質問はなくなります！
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Method</span><span>Predict Questions</span></div>
+</div>
+
+</body>
+</html>

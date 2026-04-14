@@ -1,0 +1,486 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>ガクチカの面接での話し方</title>
+<style>
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+:root {
+  --main:  #b8860b;
+  --sub-c: #8b6914;
+  --accent:#d4a437;
+  --text:  #2a2210;
+  --sub:   #6b5a3a;
+  --line:  #ece3cf;
+  --bg:    #fbf6e8;
+  --hi:    #fff4cc;
+  --white: #ffffff;
+  --ng:    #c44;
+  --ok:    #4a8b4a;
+}
+
+body {
+  font-family: 'Hiragino Sans', 'Yu Gothic', 'Noto Sans JP', sans-serif;
+  background: #ebe3c8;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 40px 16px 80px;
+  gap: 3px;
+}
+
+.slide {
+  width: 960px;
+  height: 540px;
+  background: var(--white);
+  position: relative;
+  overflow: hidden;
+  flex-shrink: 0;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.10);
+}
+.bar {
+  position: absolute;
+  top: 0; left: 0; right: 0;
+  height: 5px;
+  background: var(--main);
+}
+.logo {
+  position: absolute;
+  top: 16px; left: 32px;
+  font-size: 11px;
+  font-weight: 700;
+  color: var(--main);
+  letter-spacing: 0.08em;
+}
+.pagenum {
+  position: absolute;
+  top: 16px; right: 32px;
+  font-size: 11px;
+  color: var(--sub);
+  letter-spacing: 0.1em;
+}
+.footer {
+  position: absolute;
+  bottom: 14px; left: 32px; right: 32px;
+  display: flex;
+  justify-content: space-between;
+  font-size: 10px;
+  color: var(--sub);
+  border-top: 1px solid var(--line);
+  padding-top: 8px;
+}
+.sec-label {
+  font-size: 10px;
+  font-weight: 700;
+  color: var(--main);
+  letter-spacing: 0.15em;
+  padding-left: 12px;
+  border-left: 3px solid var(--main);
+  margin-bottom: 10px;
+}
+.content {
+  position: absolute;
+  top: 54px; left: 48px; right: 48px; bottom: 42px;
+  display: flex;
+  flex-direction: column;
+}
+.title {
+  font-size: 24px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 4px;
+}
+.title .hi { color: var(--main); }
+.lead {
+  font-size: 12px;
+  color: var(--sub);
+  margin-bottom: 12px;
+}
+
+/* S1 */
+.s1-wrap { flex: 1; display: flex; flex-direction: column; justify-content: center; }
+.s1-kicker {
+  font-size: 13px;
+  color: var(--main);
+  letter-spacing: 0.2em;
+  font-weight: 700;
+  margin-bottom: 14px;
+}
+.s1-title {
+  font-size: 40px;
+  font-weight: 800;
+  line-height: 1.25;
+}
+.s1-title .hi { color: var(--main); }
+.s1-sub {
+  font-size: 14px;
+  color: var(--sub);
+  margin-top: 12px;
+  line-height: 1.7;
+}
+.s1-cards {
+  margin-top: 26px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 14px;
+}
+.s1-card {
+  border-top: 3px solid var(--main);
+  background: var(--bg);
+  padding: 14px 18px;
+}
+.s1-card-label {
+  font-size: 10px;
+  color: var(--main);
+  letter-spacing: 0.15em;
+  font-weight: 700;
+  margin-bottom: 3px;
+}
+.s1-card-title {
+  font-size: 18px;
+  font-weight: 800;
+  color: var(--text);
+  margin-bottom: 6px;
+}
+.s1-card-desc {
+  font-size: 12px;
+  color: var(--sub);
+  line-height: 1.6;
+}
+
+/* S2 対策表 */
+.cmp {
+  flex: 1;
+  display: grid;
+  grid-template-columns: 90px 1fr 1fr;
+  grid-template-rows: auto 1fr 1fr 1fr;
+  gap: 4px;
+  min-height: 0;
+}
+.cmp-h {
+  background: var(--main);
+  color: #fff;
+  font-size: 13px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+.cmp-label {
+  background: var(--sub-c);
+  color: #fff;
+  font-size: 12px;
+  font-weight: 800;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 8px;
+}
+.cmp-cell {
+  background: var(--bg);
+  padding: 10px 14px;
+  font-size: 13px;
+  line-height: 1.65;
+  color: var(--text);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cmp-cell b { color: var(--main); font-size: 14px; }
+.chk {
+  display: block;
+  padding-left: 20px;
+  position: relative;
+  margin-bottom: 3px;
+}
+.chk::before {
+  content: "✓";
+  position: absolute;
+  left: 0; top: 1px;
+  color: var(--main);
+  font-weight: 900;
+}
+
+/* S3/S4: サンプル */
+.sample-wrap {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  min-height: 0;
+}
+.legend {
+  display: flex;
+  gap: 14px;
+  font-size: 11px;
+  color: var(--sub);
+}
+.legend-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.legend-sw {
+  display: inline-block;
+  width: 22px;
+  height: 12px;
+}
+.sw-gray { background: #d8d8d8; }
+.sw-red  { background: #ffcccc; }
+.sample {
+  flex: 1;
+  background: var(--bg);
+  border-left: 3px solid var(--main);
+  padding: 14px 18px;
+  font-size: 12.5px;
+  line-height: 1.8;
+  color: var(--text);
+  overflow: hidden;
+}
+.sample p { margin-bottom: 6px; }
+.gray { background: #d8d8d8; padding: 0 2px; }
+.red  { background: #ffcccc; padding: 0 2px; }
+
+/* S4 points */
+.pt-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-top: 10px;
+}
+.pt-card {
+  background: var(--hi);
+  border-left: 3px solid var(--accent);
+  padding: 10px 14px;
+}
+.pt-head {
+  font-size: 12.5px;
+  font-weight: 800;
+  color: var(--sub-c);
+  margin-bottom: 4px;
+}
+.pt-body {
+  font-size: 11.5px;
+  line-height: 1.6;
+  color: var(--text);
+}
+
+/* S5 */
+.flow {
+  flex: 1;
+  display: flex;
+  flex-direction: column;
+  gap: 18px;
+  min-height: 0;
+}
+.flow-sit {
+  background: var(--bg);
+  border-left: 3px solid var(--main);
+  padding: 10px 14px;
+  font-size: 13px;
+  font-weight: 700;
+  color: var(--text);
+}
+.dialog {
+  background: var(--white);
+  border: 1.5px solid var(--line);
+  padding: 12px 14px;
+  display: flex;
+  flex-direction: column;
+  gap: 5px;
+  font-size: 12.5px;
+  line-height: 1.6;
+}
+.d-row { display: flex; gap: 8px; }
+.d-label {
+  background: var(--sub-c);
+  color: #fff;
+  font-size: 10px;
+  font-weight: 800;
+  padding: 2px 8px;
+  flex-shrink: 0;
+  height: 18px;
+  display: flex;
+  align-items: center;
+}
+.d-label.main { background: var(--main); }
+.d-text { flex: 1; color: var(--text); }
+.upbox {
+  background: var(--hi);
+  padding: 11px 14px 11px 38px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: var(--text);
+  line-height: 1.6;
+  position: relative;
+}
+.upbox::before {
+  content: "★";
+  position: absolute;
+  left: 12px;
+  top: 10px;
+  width: 18px;
+  height: 18px;
+  background: var(--accent);
+  color: #fff;
+  font-size: 11px;
+  font-weight: 900;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+</style>
+</head>
+<body>
+
+<!-- S1 -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">01 / 05</div>
+  <div class="content">
+    <div class="sec-label">INTRODUCTION</div>
+    <div class="s1-wrap">
+      <div class="s1-kicker">GAKUCHIKA IN INTERVIEW</div>
+      <div class="s1-title">ガクチカの<span class="hi">面接</span>での話し方</div>
+      <div class="s1-sub">集団面接／個別面接で対策は変わる。時間・文字数・構成をそれぞれ最適化しよう</div>
+      <div class="s1-cards">
+        <div class="s1-card">
+          <div class="s1-card-label">TYPE 01</div>
+          <div class="s1-card-title">集団面接</div>
+          <div class="s1-card-desc">持ち時間が少ない／45-50秒・300字／結論→背景→課題→原因→施策→結果</div>
+        </div>
+        <div class="s1-card">
+          <div class="s1-card-label">TYPE 02</div>
+          <div class="s1-card-title">個別面接</div>
+          <div class="s1-card-desc">持ち時間が多い／30秒・50〜200字／結論→背景(詳しく)、会話で深掘り</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Interview</span><span>Speaking Guide</span></div>
+</div>
+
+<!-- S2: 対策表 -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">02 / 05</div>
+  <div class="content">
+    <div class="sec-label">COMPARISON</div>
+    <div class="title">面接種類別の<span class="hi">対策方法</span></div>
+    <div class="lead">集団面接と個別面接それぞれの時間・対策・根拠を比較</div>
+    <div class="cmp">
+      <div class="cmp-h"></div>
+      <div class="cmp-h">集団面接</div>
+      <div class="cmp-h">個別面接</div>
+
+      <div class="cmp-label">時間</div>
+      <div class="cmp-cell"><b>持ち時間が少ない</b>深掘りされずに面接が終わることも</div>
+      <div class="cmp-cell"><b>持ち時間が多い</b>長々と話すと聞きたいことが無くなる</div>
+
+      <div class="cmp-label">対策</div>
+      <div class="cmp-cell">
+        <span class="chk">45-50秒</span>
+        <span class="chk">300文字</span>
+        <span class="chk"><b>文章構成</b> 1結論→2背景→3課題→4原因→5施策→6詳しい結果</span>
+      </div>
+      <div class="cmp-cell">
+        <span class="chk">1〜3文で約30秒</span>
+        <span class="chk">50〜200文字</span>
+        <span class="chk"><b>文章構成</b> 1結論→2背景(詳しく)</span>
+      </div>
+
+      <div class="cmp-label">根拠</div>
+      <div class="cmp-cell">端的すぎると何も伝わらず終わることも／「1分以内で話して」と言われることも多い</div>
+      <div class="cmp-cell">短い会話のキャッチボールの方が話を理解しやすい／気になる部分を自由に聞いてくれる</div>
+    </div>
+  </div>
+  <div class="footer"><span>Comparison</span><span>Group vs Individual</span></div>
+</div>
+
+<!-- S3: 集団面接300字 -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">03 / 05</div>
+  <div class="content">
+    <div class="sec-label">SAMPLE 01</div>
+    <div class="title">ES400字 → <span class="hi">集団面接300字</span> の答え方</div>
+    <div class="lead">基本は45-50秒。余裕があれば赤マーカー部分まで話して1分半に</div>
+    <div class="sample-wrap">
+      <div class="legend">
+        <div class="legend-item"><span class="legend-sw sw-gray"></span>削除(45-50秒)</div>
+        <div class="legend-item"><span class="legend-sw sw-red"></span>基本は言わない／長めに話してもよさそうなら言う(1分半)</div>
+      </div>
+      <div class="sample">
+        <p>教育メディアサイトを運営する企業において、月1000万円規模の広告運用を担当し、資料請求数増加に貢献したことです。</p>
+        <p>その中で私は<span class="gray">ランキングというサイトの</span>広告担当としてデータ分析や広告の改善、入稿業務を行っています。</p>
+        <p>サイトは近年、請求数の伸び悩みが課題で、<span class="gray">改善に向け</span>これを全体の10%にあたる500件の増加を目標としていました。潜在顧客との接点不足が原因だと考え、既存広告に対する業務の効率化と、新規顧客の獲得に向けて2つの施策を実行しました。</p>
+        <p>1つ目はデータ分析などの業務のフォーマットを作成したことです。<span class="red">仕組化したことで3つの工数を削減しました。</span>2つ目は新たな媒体での広告配信、ターゲティング規模拡大です。<span class="red">これにより、認知層を拡大し、潜在顧客の獲得に繋がると考えました。</span></p>
+        <p>その結果、請求数を前年比700件増加させ、業務時間や人数に変更なく目標を達成することができました。</p>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Sample 01</span><span>Group Interview</span></div>
+</div>
+
+<!-- S4: 個別面接200字 + ポイント -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">04 / 05</div>
+  <div class="content">
+    <div class="sec-label">SAMPLE 02</div>
+    <div class="title">ES400字 → <span class="hi">個別面接200字</span> の答え方</div>
+    <div class="lead">短く端的に結論→背景のみ。会話の中で深掘りに備える</div>
+    <div class="sample-wrap">
+      <div class="sample">
+        <p>ランキングサイトを運営する企業で、月1000万円規模の広告運用を担当し、前年比700件の資料請求数増加に貢献したことです。</p>
+        <p>長期インターンで10か月間、サイトの広告運用を担当しており、主に3つの業務を行っています。</p>
+        <p>具体的には、クリック率と申込数の分析業務、週に6時間の他部門とのミーティングを通じた広告改善業務、Google、Yahoo等の4媒体に対して入稿業務を行っています。</p>
+      </div>
+      <div class="pt-grid">
+        <div class="pt-card">
+          <div class="pt-head">面接官は未経験である</div>
+          <div class="pt-body">わかりにくい話は枕詞を使う。「イメージが掴みにくいと思うので前提の話をさせていただきますと」</div>
+        </div>
+        <div class="pt-card">
+          <div class="pt-head">情報格差を埋めるコミュニケーション</div>
+          <div class="pt-body">専門用語が多かったり事前知識がない領域の話もある。面接官の知識を確認するのも一つの手</div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="footer"><span>Sample 02</span><span>Individual Interview</span></div>
+</div>
+
+<!-- S5: 反応を見ながら -->
+<div class="slide">
+  <div class="bar"></div>
+  <div class="logo">CAREER GUIDE</div>
+  <div class="pagenum">05 / 05</div>
+  <div class="content">
+    <div class="sec-label">TECHNIQUE</div>
+    <div class="title">大事なのは「<span class="hi">面接官の反応</span>を見ながら話す」こと</div>
+    <div class="lead">ガクチカを短めで話し、「もう終わり？」という反応をされた場合の対応</div>
+    <div class="flow">
+      <div class="flow-sit">ガクチカを短めで話す → 「え、それで終わり？」という反応 → 枕詞で追加説明へ</div>
+      <div class="dialog">
+        <div class="d-row"><div class="d-label">面接官</div><div class="d-text">「え、それで終わり？」</div></div>
+        <div class="d-row"><div class="d-label main">枕詞</div><div class="d-text">もう少し詳しく申し上げてもよろしいでしょうか。</div></div>
+        <div class="d-row"><div class="d-label main">追加情報</div><div class="d-text">それでは課題と施策2点についてお話しさせていただきます。</div></div>
+        <div class="d-row"><div class="d-label main">展開</div><div class="d-text">1つ目は〜／2つ目は〜 ➡ 約400字分のガクチカの続きを話す</div></div>
+      </div>
+      <div class="upbox">通過率UPのポイント ── 会話を意識し、質問の意図を読み取り、面接官の反応を見ながら話す内容・量を調整する。追加情報が必要な場合は「課題→施策」を30秒ほどで伝えられるよう準備しておこう！</div>
+    </div>
+  </div>
+  <div class="footer"><span>Technique</span><span>Read Reactions</span></div>
+</div>
+
+</body>
+</html>
