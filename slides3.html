@@ -28,6 +28,15 @@ body {
   gap: 3px;
 }
 
+@media (max-width: 1000px) {
+  body { padding: 16px 0 40px; gap: 0; }
+  .slide {
+    transform: scale(calc((100vw - 20px) / 960));
+    transform-origin: top center;
+    margin-bottom: calc((100vw - 20px) / 960 * 540 - 540px + 10px);
+  }
+}
+
 /* ===== SLIDE 共通 ===== */
 .slide {
   width: 960px;
