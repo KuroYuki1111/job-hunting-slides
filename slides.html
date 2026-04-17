@@ -1,0 +1,612 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>戦略的自己紹介 資料</title>
+<style>
+  /* ===== RESET & BASE ===== */
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --navy:    #0f172a;
+    --indigo:  #1e3a5f;
+    --accent:  #38bdf8;
+    --gold:    #fbbf24;
+    --rose:    #f43f5e;
+    --green:   #34d399;
+    --white:   #f8fafc;
+    --muted:   #94a3b8;
+    --card-bg: rgba(255,255,255,0.06);
+    --border:  rgba(255,255,255,0.12);
+  }
+
+  body {
+    font-family: 'Hiragino Sans', 'Yu Gothic UI', sans-serif;
+    background: var(--navy);
+    color: var(--white);
+    min-height: 100vh;
+  }
+
+  /* ===== SLIDE WRAPPER ===== */
+  .slide-wrapper {
+    display: none;
+    position: relative;
+    width: 960px;
+    min-height: 640px;
+    margin: 0 auto;
+    overflow: hidden;
+  }
+  .slide-wrapper.active { display: block; }
+
+  /* ===== LAYER: 背景グラデーション ===== */
+  .layer-bg {
+    position: absolute;
+    inset: 0;
+    z-index: 0;
+    background: linear-gradient(135deg, #0f172a 0%, #1e3a5f 60%, #0c2340 100%);
+  }
+  .layer-bg::before {
+    content: '';
+    position: absolute;
+    top: -120px; right: -120px;
+    width: 400px; height: 400px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(56,189,248,0.18) 0%, transparent 70%);
+  }
+  .layer-bg::after {
+    content: '';
+    position: absolute;
+    bottom: -80px; left: -80px;
+    width: 300px; height: 300px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(251,191,36,0.12) 0%, transparent 70%);
+  }
+
+  /* ===== LAYER: デコレーション (dots grid) ===== */
+  .layer-deco {
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    background-image: radial-gradient(rgba(255,255,255,0.04) 1px, transparent 1px);
+    background-size: 32px 32px;
+  }
+
+  /* ===== LAYER: コンテンツ ===== */
+  .layer-content {
+    position: relative;
+    z-index: 2;
+    padding: 40px 56px;
+    min-height: 640px;
+  }
+
+  /* ===== SLIDE HEADER ===== */
+  .slide-header {
+    display: flex;
+    align-items: center;
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+  .slide-num {
+    width: 40px; height: 40px;
+    border-radius: 50%;
+    background: var(--accent);
+    color: var(--navy);
+    font-weight: 900;
+    font-size: 18px;
+    display: flex; align-items: center; justify-content: center;
+    flex-shrink: 0;
+  }
+  .slide-title {
+    font-size: 26px;
+    font-weight: 800;
+    letter-spacing: 0.02em;
+    line-height: 1.3;
+  }
+  .slide-title span {
+    color: var(--accent);
+  }
+  .aim-tag {
+    margin-left: auto;
+    background: rgba(56,189,248,0.15);
+    border: 1px solid var(--accent);
+    color: var(--accent);
+    font-size: 11px;
+    padding: 4px 12px;
+    border-radius: 999px;
+    white-space: nowrap;
+  }
+
+  /* ===== CARD ===== */
+  .card {
+    background: var(--card-bg);
+    border: 1px solid var(--border);
+    border-radius: 16px;
+    padding: 20px 24px;
+    backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
+  }
+  .card + .card { margin-top: 16px; }
+
+  /* ===== TWO-COLUMN ===== */
+  .two-col {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 16px;
+    margin-top: 16px;
+  }
+
+  /* ===== BADGE LABEL ===== */
+  .badge {
+    display: inline-block;
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 10px;
+    border-radius: 999px;
+    margin-bottom: 8px;
+  }
+  .badge-blue  { background: rgba(56,189,248,0.2);  color: var(--accent); }
+  .badge-gold  { background: rgba(251,191,36,0.2);  color: var(--gold); }
+  .badge-rose  { background: rgba(244,63,94,0.2);   color: var(--rose); }
+  .badge-green { background: rgba(52,211,153,0.2);  color: var(--green); }
+
+  /* ===== TEXT UTILITIES ===== */
+  .heading { font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+  .body    { font-size: 13px; color: #cbd5e1; line-height: 1.8; }
+  .accent-text { color: var(--accent); font-weight: 700; }
+  .gold-text   { color: var(--gold);   font-weight: 700; }
+  .rose-text   { color: var(--rose);   font-weight: 700; }
+  .green-text  { color: var(--green);  font-weight: 700; }
+  .highlight {
+    background: linear-gradient(transparent 60%, rgba(251,191,36,0.35) 60%);
+  }
+
+  /* ===== DIVIDER ===== */
+  .divider {
+    height: 1px;
+    background: var(--border);
+    margin: 14px 0;
+  }
+
+  /* ===== ARROW ROW ===== */
+  .arrow-row {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  .arrow-icon {
+    width: 22px; height: 22px;
+    border-radius: 50%;
+    display: flex; align-items: center; justify-content: center;
+    font-size: 12px;
+    flex-shrink: 0;
+    margin-top: 2px;
+  }
+  .arrow-icon.blue  { background: var(--accent); color: var(--navy); }
+  .arrow-icon.gold  { background: var(--gold);   color: var(--navy); }
+
+  /* ===== QUOTE BLOCK ===== */
+  .quote-block {
+    border-left: 3px solid var(--accent);
+    padding: 10px 16px;
+    background: rgba(56,189,248,0.06);
+    border-radius: 0 8px 8px 0;
+    font-size: 13px;
+    color: #e2e8f0;
+    line-height: 1.8;
+    font-style: italic;
+  }
+
+  /* ===== PATTERN CARD (slide 2) ===== */
+  .pattern-num {
+    font-size: 11px;
+    font-weight: 900;
+    color: var(--navy);
+    background: var(--gold);
+    padding: 2px 8px;
+    border-radius: 4px;
+    margin-right: 8px;
+  }
+  .pattern-title { font-size: 14px; font-weight: 800; display: inline; }
+
+  /* ===== CATCHCOPY GRID ===== */
+  .catchcopy-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+    margin-top: 10px;
+  }
+  .catchcopy-item {
+    background: rgba(255,255,255,0.04);
+    border: 1px solid var(--border);
+    border-radius: 10px;
+    padding: 12px 14px;
+  }
+  .catchcopy-item .label {
+    font-size: 16px;
+    font-weight: 800;
+    color: var(--gold);
+    margin-bottom: 4px;
+  }
+  .catchcopy-item .desc {
+    font-size: 11px;
+    color: #94a3b8;
+    line-height: 1.6;
+  }
+
+  /* ===== SLIDE3: FLOW DIAGRAM ===== */
+  .flow-row {
+    display: flex;
+    align-items: stretch;
+    gap: 0;
+    margin: 16px 0;
+  }
+  .flow-box {
+    flex: 1;
+    background: rgba(255,255,255,0.05);
+    border: 1px solid var(--border);
+    border-radius: 12px;
+    padding: 14px 16px;
+    text-align: center;
+    font-size: 12px;
+    line-height: 1.6;
+    position: relative;
+  }
+  .flow-box .flow-label {
+    font-size: 10px;
+    font-weight: 700;
+    margin-bottom: 6px;
+    letter-spacing: 0.08em;
+  }
+  .flow-box .flow-body {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--white);
+  }
+  .flow-arrow {
+    display: flex;
+    align-items: center;
+    padding: 0 8px;
+    font-size: 18px;
+    color: var(--muted);
+  }
+
+  /* ===== RABBIT STEPS (slide3 sample) ===== */
+  .rabbit-steps { margin-top: 10px; }
+  .rabbit-step {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    padding: 10px 0;
+    border-bottom: 1px solid var(--border);
+  }
+  .rabbit-step:last-child { border-bottom: none; }
+  .rabbit-icon {
+    width: 32px; height: 32px;
+    border-radius: 8px;
+    background: linear-gradient(135deg, var(--accent), #0ea5e9);
+    display: flex; align-items: center; justify-content: center;
+    font-size: 15px;
+    flex-shrink: 0;
+    color: var(--navy);
+    font-weight: 900;
+  }
+  .rabbit-icon.g { background: linear-gradient(135deg, var(--gold), #f59e0b); }
+  .rabbit-icon.r { background: linear-gradient(135deg, var(--rose), #e11d48); }
+  .rabbit-text { font-size: 13px; color: #cbd5e1; line-height: 1.7; }
+  .rabbit-text strong { color: var(--white); }
+
+  /* ===== NAVIGATION ===== */
+  .nav {
+    position: fixed;
+    bottom: 28px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 12px;
+    z-index: 100;
+    background: rgba(15,23,42,0.85);
+    padding: 10px 20px;
+    border-radius: 999px;
+    border: 1px solid var(--border);
+    backdrop-filter: blur(12px);
+  }
+  .nav button {
+    background: none;
+    border: 1px solid var(--border);
+    color: var(--white);
+    padding: 6px 20px;
+    border-radius: 999px;
+    cursor: pointer;
+    font-size: 13px;
+    font-family: inherit;
+    transition: all 0.2s;
+  }
+  .nav button:hover { background: var(--accent); border-color: var(--accent); color: var(--navy); font-weight: 700; }
+  .nav .slide-indicator { color: var(--muted); font-size: 13px; line-height: 1; display: flex; align-items: center; }
+
+  /* ===== PAGE CONTAINER ===== */
+  .page-container {
+    width: 960px;
+    margin: 0 auto;
+    padding: 32px 0 100px;
+  }
+
+  /* ===== WARN BOX ===== */
+  .warn-box {
+    background: rgba(244,63,94,0.1);
+    border: 1px solid rgba(244,63,94,0.3);
+    border-radius: 10px;
+    padding: 12px 16px;
+    font-size: 13px;
+    color: #fca5a5;
+    line-height: 1.7;
+  }
+  .warn-box .warn-title {
+    font-weight: 700;
+    color: var(--rose);
+    margin-bottom: 4px;
+    font-size: 13px;
+  }
+</style>
+</head>
+<body>
+
+<div class="page-container">
+
+  <!-- ========== SLIDE 1 ========== -->
+  <div class="slide-wrapper active" id="slide-1">
+    <div class="layer-bg"></div>
+    <div class="layer-deco"></div>
+    <div class="layer-content">
+
+      <div class="slide-header">
+        <div class="slide-num">1</div>
+        <div class="slide-title">プレゼント資料<span>　自己紹介</span></div>
+        <div class="aim-tag">今回のねらい</div>
+      </div>
+
+      <!-- ねらい -->
+      <div class="card">
+        <div class="badge badge-blue">GOAL</div>
+        <div style="display:flex; gap:24px; margin-top:4px;">
+          <div class="arrow-row" style="flex:1;">
+            <div class="arrow-icon blue">→</div>
+            <div class="body">戦略的な自己紹介の<span class="accent-text">ポイントを知る</span></div>
+          </div>
+          <div class="arrow-row" style="flex:1;">
+            <div class="arrow-icon blue">→</div>
+            <div class="body">内定者の実際の自己紹介を<span class="accent-text">活用する</span></div>
+          </div>
+        </div>
+      </div>
+
+      <!-- 自己紹介 vs 自己PR -->
+      <div class="two-col" style="margin-top:16px;">
+        <div class="card">
+          <div class="badge badge-blue">自己紹介</div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="font-size:11px; background:rgba(56,189,248,0.2); color:var(--accent); padding:2px 8px; border-radius:4px;">🕒 15秒〜</span>
+          </div>
+          <div class="body" style="font-size:12px; line-height:1.9;">
+            名前<br>
+            ＋ 大学・学部学科<br>
+            ＋ 専攻している学問<br>
+            ＋ <span class="gold-text">α（経験・強みを軽く）</span>
+          </div>
+          <div class="divider"></div>
+          <div class="arrow-row">
+            <div class="arrow-icon gold">!</div>
+            <div class="body" style="font-size:12px;"><span class="highlight">＋αの部分を意識してつくる！</span></div>
+          </div>
+        </div>
+
+        <div class="card">
+          <div class="badge badge-gold">自己PR</div>
+          <div style="display:flex; align-items:center; gap:8px; margin-bottom:8px;">
+            <span style="font-size:11px; background:rgba(251,191,36,0.2); color:var(--gold); padding:2px 8px; border-radius:4px;">🕒 30秒〜1分</span>
+          </div>
+          <div class="body" style="font-size:12px; line-height:1.9;">
+            強みは〇〇です<br>
+            ➡ 培った経験や活かした経験
+          </div>
+          <div class="divider"></div>
+          <div class="warn-box" style="margin-top:0; padding:10px 12px;">
+            <div class="warn-title">⚠ 注意点</div>
+            <div style="font-size:12px;">面接官から指示がある場合は従う<br>ex）名前のみ・大学名なし・時間指定あり<br>→ <span style="color:#fbbf24;">何パターンか用意しておくのが◎</span></div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /slide-1 -->
+
+
+  <!-- ========== SLIDE 2 ========== -->
+  <div class="slide-wrapper" id="slide-2">
+    <div class="layer-bg"></div>
+    <div class="layer-deco"></div>
+    <div class="layer-content">
+
+      <div class="slide-header">
+        <div class="slide-num">2</div>
+        <div class="slide-title">自己紹介で意識する<span>ポイント3選</span></div>
+      </div>
+
+      <!-- 3ポイント概要 -->
+      <div style="display:flex; gap:12px; margin-bottom:16px;">
+        <div class="card" style="flex:1; text-align:center;">
+          <div style="font-size:22px; margin-bottom:6px;">🌱</div>
+          <div class="badge badge-green">POINT 01</div>
+          <div style="font-size:13px; font-weight:700; margin-top:6px;">面接の<br>種まきをする</div>
+        </div>
+        <div class="card" style="flex:1; text-align:center;">
+          <div style="font-size:22px; margin-bottom:6px;">👁️</div>
+          <div class="badge badge-blue">POINT 02</div>
+          <div style="font-size:13px; font-weight:700; margin-top:6px;">面接官に<br>印象を残す</div>
+        </div>
+        <div class="card" style="flex:1; text-align:center;">
+          <div style="font-size:22px; margin-bottom:6px;">🎭</div>
+          <div class="badge badge-rose">POINT 03</div>
+          <div style="font-size:13px; font-weight:700; margin-top:6px;">キャラクターを<br>見せる</div>
+        </div>
+      </div>
+
+      <!-- パターン① -->
+      <div class="card" style="margin-bottom:12px;">
+        <div style="margin-bottom:8px;">
+          <span class="pattern-num">① 種まき</span>
+          <span class="pattern-title">経験を広く浅く話す</span>
+        </div>
+        <div class="quote-block">
+          「高校時代には〇〇、大学時代には〇〇の活動に注力。どちらでも△△の役割を担っておりました。～～は中学生のころから、10年以上続けております。」
+        </div>
+        <div class="arrow-row" style="margin-top:10px;">
+          <div class="arrow-icon blue">→</div>
+          <div class="body" style="font-size:12px;">自己紹介後に<span class="accent-text">深掘り質問</span>をされることがある。ガクチカや自己PRで使わないエピソードを散りばめるのも◎</div>
+        </div>
+      </div>
+
+      <!-- パターン② -->
+      <div class="card">
+        <div style="margin-bottom:8px;">
+          <span class="pattern-num" style="background:var(--accent); color:var(--navy);">② 印象</span>
+          <span class="pattern-title">キャッチコピーを使う</span>
+        </div>
+        <div class="quote-block" style="border-left-color: var(--gold);">
+          「私を一言で表すと『〇〇』です！～することが多く友人や家族からこのように呼ばれています！」
+        </div>
+        <div class="catchcopy-grid">
+          <div class="catchcopy-item">
+            <div class="label">「みんなの笑顔が原動力」</div>
+            <div class="desc">潜在的印象をコントロールできる。自分が面接官に与えたい印象を言語化。</div>
+          </div>
+          <div class="catchcopy-item">
+            <div class="label">「行動力の塊」</div>
+            <div class="desc">第一印象で大人しく見られる人は、アピールしたい性格をここで伝えると効果的！</div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /slide-2 -->
+
+
+  <!-- ========== SLIDE 3 ========== -->
+  <div class="slide-wrapper" id="slide-3">
+    <div class="layer-bg"></div>
+    <div class="layer-deco"></div>
+    <div class="layer-content">
+
+      <div class="slide-header">
+        <div class="slide-num">3</div>
+        <div class="slide-title">活用パターン③　<span>パーソナルネタを混ぜる</span></div>
+        <div class="aim-tag">キャラクターを見せる</div>
+      </div>
+
+      <div class="two-col">
+        <!-- 左: フロー -->
+        <div>
+          <div class="card" style="margin-bottom:12px;">
+            <div class="badge badge-rose">STRATEGY</div>
+            <div class="heading" style="margin-top:8px;">キャラクターの見せ方2パターン</div>
+
+            <div class="flow-row">
+              <div class="flow-box">
+                <div class="flow-label" style="color:var(--muted);">START</div>
+                <div class="flow-body" style="color:#e2e8f0; font-size:12px;">「冷静なキャラ<br>に見られる」</div>
+              </div>
+              <div class="flow-arrow">→</div>
+              <div class="flow-box" style="border-color:rgba(56,189,248,0.4); background:rgba(56,189,248,0.08);">
+                <div class="flow-label" style="color:var(--accent);">ギャップ</div>
+                <div class="flow-body" style="font-size:12px;">チャレンジ精神・<br>粘り強さをアピール</div>
+              </div>
+            </div>
+
+            <div class="flow-row" style="margin-top:8px;">
+              <div class="flow-box" style="visibility:hidden; flex:none; width:120px;"></div>
+              <div class="flow-arrow" style="transform:rotate(90deg); padding:4px 8px;"></div>
+              <div class="flow-box" style="border-color:rgba(251,191,36,0.4); background:rgba(251,191,36,0.08);">
+                <div class="flow-label" style="color:var(--gold);">一貫性</div>
+                <div class="flow-body" style="font-size:12px;">冷静なキャラ・<br>ストレス耐性を再アピール</div>
+              </div>
+            </div>
+          </div>
+
+          <!-- 属性タグ -->
+          <div class="card">
+            <div class="badge badge-gold">内定者の実際の自己紹介</div>
+            <div style="display:flex; gap:8px; margin-top:8px;">
+              <span style="font-size:12px; background:rgba(255,255,255,0.08); border:1px solid var(--border); padding:4px 10px; border-radius:6px;">📚 文系学部生</span>
+              <span style="font-size:12px; background:rgba(255,255,255,0.08); border:1px solid var(--border); padding:4px 10px; border-radius:6px;">🏭 メーカー・金融</span>
+            </div>
+            <div style="margin-top:10px; font-size:12px; color:var(--gold); font-weight:700;">インパクトを重視した自己紹介</div>
+          </div>
+        </div>
+
+        <!-- 右: 3羽の兎 -->
+        <div class="card" style="height: fit-content;">
+          <div class="badge badge-blue">SAMPLE 自己紹介文</div>
+          <div class="quote-block" style="margin-top:10px; font-size:11.5px; font-style:normal;">
+            〇〇大学文学部の〇〇です。<br>
+            <span class="gold-text">「二兎を追う者は一兎をも得ず」</span>ということわざがありますが、私の強みは二兎どころか<span class="accent-text">三兎も四兎も追いかけるチャレンジ精神</span>です。
+          </div>
+          <div class="rabbit-steps">
+            <div class="rabbit-step">
+              <div class="rabbit-icon">1</div>
+              <div class="rabbit-text">
+                <strong>海外経験なし（純ジャパ）→ 交換留学</strong><br>
+                苦労も多かったが、最終的に <span class="accent-text">GPA3.9/4.0</span> を達成
+              </div>
+            </div>
+            <div class="rabbit-step">
+              <div class="rabbit-icon g">2</div>
+              <div class="rabbit-text">
+                <strong>〇〇サークルに挑戦</strong><br>
+                二年間で〜することができました（ガクチカ）
+              </div>
+            </div>
+            <div class="rabbit-step">
+              <div class="rabbit-icon r">3</div>
+              <div class="rabbit-text">
+                <strong>〇〇未経験 → 〇〇サークルへ飛び込み</strong><br>
+                引退時には〇〇できました
+              </div>
+            </div>
+          </div>
+          <div class="divider"></div>
+          <div class="body" style="font-size:11.5px; text-align:center; color:#94a3b8;">本日は大変緊張しておりますが、私のありのままの人柄と御社への熱意が伝わるよう精一杯頑張りますので、よろしくお願いします。</div>
+        </div>
+      </div>
+
+    </div>
+  </div><!-- /slide-3 -->
+
+</div><!-- /page-container -->
+
+<!-- ========== NAVIGATION ========== -->
+<div class="nav">
+  <button onclick="goSlide(-1)">← 前へ</button>
+  <span class="slide-indicator" id="indicator">1 / 3</span>
+  <button onclick="goSlide(1)">次へ →</button>
+</div>
+
+<script>
+  let current = 1;
+  const total = 3;
+
+  function goSlide(dir) {
+    document.getElementById('slide-' + current).classList.remove('active');
+    current = Math.max(1, Math.min(total, current + dir));
+    document.getElementById('slide-' + current).classList.add('active');
+    document.getElementById('indicator').textContent = current + ' / ' + total;
+  }
+
+  document.addEventListener('keydown', e => {
+    if (e.key === 'ArrowRight' || e.key === 'ArrowDown') goSlide(1);
+    if (e.key === 'ArrowLeft'  || e.key === 'ArrowUp')   goSlide(-1);
+  });
+</script>
+</body>
+</html>
